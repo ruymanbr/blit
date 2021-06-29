@@ -23,7 +23,7 @@ import (
 	"log"
 	"os"
     "path/filepath"  
-    "blit/cli"
+    "github.com/ruymanbr/tables.git"
     //"io/ioutil"
 )
 
