@@ -50,14 +50,21 @@ func main() {
 }
 
 // GetPath extracts path from CLI argument, if not given it returns current directory path
-func GetPath(a []string) (string, bool) {
+// 
+// Takes 1 argument:
+// 1: args []string 	(os.Args)
+//
+// Returns: 
+//	1: string 			(argument path or current working directory)
+//	2: bool 			(Yes for argument with path from CLI call to blit program)
+func GetPath(args []string) (string, bool) {
 	curr_wd, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	} else {
-		switch len(a) {
+		switch len(args) {
 			case 2: 				
-				return a[1], true
+				return args[1], true
 			default: 
 				return curr_wd, false
 		}	
@@ -67,6 +74,17 @@ func GetPath(a []string) (string, bool) {
 }
 
 // GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -> Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
+// 
+// Takes 2 arguments:
+// 1: root string 		(Given path from GetPath() )
+// 2: cli_ON bool 		(True when path was given from command line to blit program)
+//
+// Returns (same as EncapData() :
+//	1: [][]int 			(File sizes matrix)
+//	2: [][]string 		(Contains file info -> [n_files]{isDir, lastM, fName, size_HR_Format}  )
+//	3: error 			(Flagged error obtained from os.Stat(/path/to/file/name/) for each file in 2nd argument dataset)
+//	4: int64 			(Sum of total file sizes in given path)
+//	5: int 				(total number of files in given path)
 func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int) {
 
 	f, err := os.Open(root)
@@ -86,7 +104,17 @@ func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, i
 	return EncapData(fileInfo, "")
 }
 
-// EncapData extracts data from a []fs.FileInfo dataset in a given path. Returns values: Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
+// EncapData extracts data from a []fs.FileInfo dataset in a given path (string). 
+//
+// 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
+// 2: root string (Path where files are located)
+//
+// Returns:
+//	1: [][]int 			(File sizes matrix)
+//	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
+//	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+//	4: int64 			(Sum of total file sizes in given path)
+//	5: int (			total number of files in given path)
 func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64, int) {
     var files [][]string	// data set of all files scanned
     var sizes [][]int 		// data set of [][original_order, size] of [][]ints
@@ -129,7 +157,13 @@ func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error,
 	return sizes, files, nil, totSize, totFiles
 }
 
-// CleanData removes first column for [][]string matrix as in returned by EncapData() second returned value, and returns the separated datasets: [][]string, []string
+// CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
+//
+// 1: [][]string 	(Raw data from Encap(), including dirs conditional y/n in first colum
+// 
+// Returns: 
+//	1: [][]string 	(Same matrix without first colum)
+//	2: []string 	(Folder y/n confirmation string obtained from argument to this function)
 func CleanData(rawData [][]string) ([][]string, []string) {
 	var cleanSli [][]string						// 2D slice matrix without the y/n directory column
 	var dirSli []string							// []int slice matrix containing y/n directory column
@@ -141,22 +175,34 @@ func CleanData(rawData [][]string) ([][]string, []string) {
 	return cleanSli, dirSli
 }
 
-// ByteToReadableSize transform a byte size into human readable form sizes (kb, Mb, Gb, Tb, Pb)
-func ByteToReadableSize(b int64) string {
+// ByteToReadableSize transform a byte size into human readable form sizes (kb, Mb, Gb, Tb, Pb). Takes 1 argument and returns a HR string for size
+//
+// 1: bigNum int64 		(size in bytes)
+//
+// Returns:
+//	1: string			(size in human readable form: Pb, Tb, Gb, etc)
+func ByteToReadableSize(bigNum int64) string {
     const unit = 1024
-    if b < unit {
+    if bigNum < unit {
         return fmt.Sprintf("%d  B", b)
     }
     div, exp := int64(unit), 0
-    for n := b / unit; n >= unit; n /= unit {
+    for n := bigNum / unit; n >= unit; n /= unit {
         div *= unit
         exp++
     }
     return fmt.Sprintf("%.1f %cb",
-        float64(b)/float64(div), "KMGTPE"[exp])
+        float64(bigNum)/float64(div), "KMGTPE"[exp])
 }
 
-// RenderData outputs in Shell CLI a [][]string dataset as a table
+// RenderData renders a table in CLI. Takes 4 arguments with information from Files in path given as first argument to the program
+//
+// 1: []string  		(Slice with y/n values for Directory)
+// 2: [][]string 		(Sorted Slice from biggest file to lowest size) 
+// 3: int64 			(Total scanned file size combined)
+// 4: int 				(Total files in given path)//	
+//	
+//	<No return>
 func RenderData(dirs []string, data [][]string, totSize int64, totFiles int) {
 
 	tSizeStr := ByteToReadableSize(totSize)
@@ -177,14 +223,21 @@ func RenderData(dirs []string, data [][]string, totSize int64, totFiles int) {
 	tablewriter.Colors{tablewriter.FgHiWhiteColor},
 	tablewriter.Colors{tablewriter.FgHiWhiteColor},
 	tablewriter.Colors{tablewriter.FgHiWhiteColor})
-	table.SetFooter([]string{"", "", strconv.Itoa(totFiles) + " files", tSizeStr + " (total)"}) // Add Footer
+	table.SetFooter([]string{"", "", strconv.Itoa(totFiles) + " files", tSizeStr + " (total)"})
 	
-	table.SetBorder(false)                              // Set Border to false
-	table.AppendBulk(data)                              // Add Bulk Data
+	table.SetBorder(false) 
+	table.AppendBulk(data) 
 	table.Render()
 }
 
-// FileSizeSort sorts a [][]int slice matrix as first argument (Bigger first, smaller last). '<sizePos> int' gives the position of filesize (int type)
+// FileSizeSort sorts a [][]int slice matrix of file data, by size.
+// 
+// Takes 2 arguments:
+// 
+// 1: sli [][]int 		(size matrix with size and original position as column values in every row)
+// 2: sizePort int 		(as first argument (Bigger first, smaller last) by calling Swap() function
+//	
+//	<No return>
 func FileSizeSort(sli [][]int, sizePos int)  {
 	var sorted bool = false
 	var i, sorted_i int
@@ -204,7 +257,13 @@ func FileSizeSort(sli [][]int, sizePos int)  {
 	}		
 }
 
-// Swap switches positions of [][]int slice rows. Rows swapped are i and i+1 index (Takes i int as second argument) 
+// Swap switches positions of 2 rows from [][]int slice. Rows swapped are i and i+1 index (Takes i int as second argument) 
+// 
+//	Takes 2 arguments:
+//	1: sli[][]int 	(Slice containing file size information in 2 columns)
+//	2: i int 		(i and i+1 positions where rows are going to be swapped)
+// 
+//	<No return>
 func Swap(sli [][]int, i int) {
 	var row1, row2 []int
 
@@ -215,7 +274,15 @@ func Swap(sli [][]int, i int) {
 	sli[i+1]	= row1
 }
 
-// FastSwitchSli sorts a [n_files][5]string dataset returned in cascade from <- GetPathInfo() <- EncapData(). Takes ([n_files][5]string [n_files][2]int, int) as arguments. 2nd argument a sorted blueprint, 3rd for size_val as col_index in 2nd argument
+// FastSwitchSli sorts a [n_files][5]string dataset obtained from <- GetPathInfo() <- EncapData().
+// 
+// Takes 3 arguments:
+// 1: [][]string 	( Unordered string matrix with folder files data)
+// 2: [][]int 		( Sorted slice with file size and original position in primitive raw data slice)
+// 3: int 			( original position of files, in ordered fileSize slice's rows. Basically its col_index )
+//
+// Returns: 
+//	1: [][]string 	(Fully formatted array with file data. Ordered by size. later derived to RenderData() function for CLI display purpose)
 func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][]string {
 	var sortedSli [][]string
 	for _, row := range orderedSli {
