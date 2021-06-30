@@ -184,7 +184,7 @@ func CleanData(rawData [][]string) ([][]string, []string) {
 func ByteToReadableSize(bigNum int64) string {
     const unit = 1024
     if bigNum < unit {
-        return fmt.Sprintf("%d  B", b)
+        return fmt.Sprintf("%d  B", bigNum)
     }
     div, exp := int64(unit), 0
     for n := bigNum / unit; n >= unit; n /= unit {
