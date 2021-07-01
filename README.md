@@ -53,6 +53,11 @@
 <br />
 <h3 align="center">Testing the package</h3>
 <br />
+<br />
+<br />
+<br />
+<br />
+
 <p>From CONSOLE, once inside BLIT directory, run the following command</p>
 <ol>
 	<li>go test (or go test blit_test.go)</li>
@@ -66,9 +71,9 @@
 <ol>
 	<li>go get golang.org/x/tools/cmd/godoc</li>
 	<li>cd pkg</li>
-	<li>go doc -all blit.go</li>	
+	<li>go doc -all blit.go</li>
+	<sub>Displays in console</sub>
 </ol>
-<sub>Displays in console</sub>
 <br />
 <p>You can also see it in your browser using 'godoc' command as follows</p>
 	<li>export BLIT_PATH=/here/path/to/blit/</li>	
