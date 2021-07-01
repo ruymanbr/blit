@@ -144,17 +144,5 @@
 			<li></li>
 		</ul>
 </ul>
-<br />
-<h3>Recommendations for Frontend</h3>
-<ul>
-	<li></li>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
-	<li></li>
-</ul>
 {{ load:readme/4-frontend-demonstration.md }}
 
