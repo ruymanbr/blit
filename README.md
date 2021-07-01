@@ -1,4 +1,7 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><p align="center">
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->#blit
+Welcome to @blit/readme. This is version 0.0.1!
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/blit_logo.png" alt="Logo" width="150" height="auto" />
 </p>
 <h1 align="center">@blit/readme</h1>
@@ -7,10 +10,17 @@
 	</p>
 
 <p align="center">
-  <b>List files and folders in a given path. Displays the next information: <DIR y/n > <Last modified date> <file/folder name> <size></b></br>
+  <b>List files and folders in a given path. Displays the next information: DIR y/n - Last modified date - file/folder name - size</b></br>
   <sub><sub>
 </p>
 
 <br />
 
-Welcome to @blit/readme. This is version 0.0.1!
+bullets
+{{ template:toc }}
+#installation
+{{ load:readme/1-installation.md }}
+#getting-started
+{{ load:readme/2-getting-started.md }}
+#production-readiness
+{{ load:readme/3-production-readiness.md }}
