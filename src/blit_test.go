@@ -11,7 +11,7 @@
  *
  */
 
-package blit
+package main
 
 import (
 	"testing"
@@ -104,7 +104,6 @@ func TestEncapData(t *testing.T) {
 	
     type Test struct {
     	files []fs.FileInfo
-    	totSize int
     	path string
     }
 
@@ -119,6 +118,9 @@ func TestEncapData(t *testing.T) {
 			panic(err)
 		}
 		fileInfo, err := f.Readdir(-1)
+		if err != nil {
+			panic(err)
+		}
 		f.Close()
 		test := new(Test)
 		test.files 	= fileInfo

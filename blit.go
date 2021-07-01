@@ -238,7 +238,7 @@ func FileSizeSort(sli [][]int, sizePos int)  {
 	var sorted bool = false
 	var i, sorted_i int
 	
-	for sorted == false {		
+	for !sorted {		
 		sorted_i = 0
 		for i = 0; i < (len(sli) - 1); i++ {
 			if sli[i][sizePos] < sli[i+1][sizePos] {
