@@ -44,7 +44,7 @@
 	<li>go run blit.go (or ./blit)</li>
 </ul>
 <br />
-<p>You should see a lit of files and folders from the cloned git repo in your console</p>
+<p>You should see a list of files and folders from the cloned git repo in your console, ordered by size (descending size)</p>
 <br />
 <h2>2-Getting Started</h2>
 <h3>Testing the package</h3>
