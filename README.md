@@ -24,17 +24,17 @@
 	<li><a href="#3-production-readiness">3. Production Readiness</a></li>
 </ul>
 </div>
-<h2 align="center">1-Installation</h2>
+<h2>1-Installation</h2>
 <br />
-<h3 align="center">Requirements</h3>
+<h3>Requirements</h3>
 <br />
 <ul>
 	<li>Ubuntu 16.04 or newer (tested in Ubuntu 16.04)</li>
-	<li>Go version 1.16 or newer</li>
-	<li>Git installed in your system (To see instructions on how to install Git in Ubuntu go to: <a href="https://github.com/git-guides/install-git#install-git-on-linux">Install Git on Linux</a></li>
+	<li>Go version 1.16 or newer <sub>(Go to: <a href="https://golang.org/doc/install">Go install</a> to learn how to install it)</sub></li>
+	<li>Git installed in your system <sub>(To see instructions on how to install Git in Ubuntu go to: <a href="https://github.com/git-guides/install-git#install-git-on-linux">Install Git on Linux</a></sub></li>
 </ul>
 <br />
-<h3 align="center">Steps</h3>
+<h3>Steps</h3>
 <br />
 <p>Open a Console in Ubuntu and follow this steps</p>
 <br />
@@ -47,15 +47,11 @@
 	<li>go run blit.go (or ./blit)</li>
 </ul>
 <br />
-<p align="center">You should see a lit of files and folders from the cloned git repo in your console</p>
+<p>You should see a lit of files and folders from the cloned git repo in your console</p>
 <br />
-<h2 align="center">2-Getting Started</h2>
+<h2>2-Getting Started</h2>
 <br />
-<h3 align="center">Testing the package</h3>
-<br />
-<br />
-<br />
-<br />
+<h3>Testing the package</h3>
 <br />
 
 <p>From CONSOLE, once inside BLIT directory, run the following command</p>
@@ -63,7 +59,7 @@
 	<li>go test (or go test blit_test.go)</li>
 </ol>
 <br />
-<h3 align="center">Go documentation. GODOC</h3>
+<h3>Go documentation. GODOC</h3>
 <br />
 <p>Documentation has been provided in this repository in DOC, PDF and godoc format. If you don't have GODOC installed in your system and want to use it to read the program documentation instead PDF/DOC fileformats, follow the next instructions.</p>
 <br />
