@@ -65,12 +65,10 @@ func GetPath(args []string) (string, bool) {
 		switch len(args) {
 			case 2: 				
 				return args[1], true
-			default: 
-				return curr_wd, false
+
 		}	
 	}
-	return curr_wd, false
-	
+	return curr_wd, false	
 }
 
 // GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -> Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
@@ -98,9 +96,7 @@ func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, i
 	}
 	if (cli_ON) {
 		return EncapData(fileInfo, root)
-	} else {
-		return EncapData(fileInfo, "")
-	}
+	} 
 	return EncapData(fileInfo, "")
 }
 
