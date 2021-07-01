@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>blit - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.16.5";</script>
+<script src="/lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/pkg/">GoDoc</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package blit
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/ruymanbr/blit.git/src"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#ByteToReadableSize">func ByteToReadableSize(bigNum int64) string</a></dd>
+			
+				
+				<dd><a href="#CleanData">func CleanData(rawData [][]string) ([][]string, []string)</a></dd>
+			
+				
+				<dd><a href="#EncapData">func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64, int)</a></dd>
+			
+				
+				<dd><a href="#FastSwitchSli">func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][]string</a></dd>
+			
+				
+				<dd><a href="#FileSizeSort">func FileSizeSort(sli [][]int, sizePos int)</a></dd>
+			
+				
+				<dd><a href="#GetPath">func GetPath(args []string) (string, bool)</a></dd>
+			
+				
+				<dd><a href="#GetPathInfo">func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int)</a></dd>
+			
+				
+				<dd><a href="#RenderData">func RenderData(dirs []string, data [][]string, totSize int64, totFiles int)</a></dd>
+			
+				
+				<dd><a href="#Swap">func Swap(sli [][]int, i int)</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/github.com/ruymanbr/blit.git/src/blit.go">blit.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+			
+			
+			<h2 id="ByteToReadableSize">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=5316:5360#L174">ByteToReadableSize</a>
+				<a class="permalink" href="#ByteToReadableSize">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ByteToReadableSize(bigNum <a href="/pkg/builtin/#int64">int64</a>) <a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+ByteToReadableSize transform a byte size into human readable form sizes (kb, Mb, Gb, Tb, Pb). Takes 1 argument and returns a HR string for size
+</p>
+<p>
+1: bigNum int64 		(size in bytes)
+</p>
+<p>
+Returns:
+</p>
+<pre>1: string			(size in human readable form: Pb, Tb, Gb, etc)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="CleanData">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=4687:4744#L157">CleanData</a>
+				<a class="permalink" href="#CleanData">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func CleanData(rawData [][]<a href="/pkg/builtin/#string">string</a>) ([][]<a href="/pkg/builtin/#string">string</a>, []<a href="/pkg/builtin/#string">string</a>)</pre>
+			<p>
+CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
+</p>
+<p>
+1: [][]string 	(Raw data from Encap(), including dirs conditional y/n in first colum
+</p>
+<p>
+Returns:
+</p>
+<pre>1: [][]string 	(Same matrix without first colum)
+2: []string 	(Folder y/n confirmation string obtained from argument to this function)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="EncapData">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=3308:3400#L108">EncapData</a>
+				<a class="permalink" href="#EncapData">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func EncapData(fileInfo []<a href="/pkg/io/fs/">fs</a>.<a href="/pkg/io/fs/#FileInfo">FileInfo</a>, root <a href="/pkg/builtin/#string">string</a>) ([][]<a href="/pkg/builtin/#int">int</a>, [][]<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>, <a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#int">int</a>)</pre>
+			<p>
+EncapData extracts data from a []fs.FileInfo dataset in a given path (string).
+</p>
+<p>
+1: fileInfo []fs.FileInfo (obtained from os.Open File -&gt; Readdir())
+2: root string (Path where files are located)
+</p>
+<p>
+Returns:
+</p>
+<pre>1: [][]int 			(File sizes matrix)
+2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
+3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+4: int64 			(Sum of total file sizes in given path)
+5: int (			total number of files in given path)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FastSwitchSli">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=8593:8680#L276">FastSwitchSli</a>
+				<a class="permalink" href="#FastSwitchSli">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FastSwitchSli(strUnordered [][]<a href="/pkg/builtin/#string">string</a>, orderedSli [][]<a href="/pkg/builtin/#int">int</a>, origPos <a href="/pkg/builtin/#int">int</a>) [][]<a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+FastSwitchSli sorts a [n_files][5]string dataset obtained from &lt;- GetPathInfo() &lt;- EncapData().
+</p>
+<p>
+Takes 3 arguments:
+1: [][]string 	( Unordered string matrix with folder files data)
+2: [][]int 		( Sorted slice with file size and original position in primitive raw data slice)
+3: int 			( original position of files, in ordered fileSize slice&#39;s rows. Basically its col_index )
+</p>
+<p>
+Returns:
+</p>
+<pre>1: [][]string 	(Fully formatted array with file data. Ordered by size. later derived to RenderData() function for CLI display purpose)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="FileSizeSort">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=7290:7333#L231">FileSizeSort</a>
+				<a class="permalink" href="#FileSizeSort">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func FileSizeSort(sli [][]<a href="/pkg/builtin/#int">int</a>, sizePos <a href="/pkg/builtin/#int">int</a>)</pre>
+			<p>
+FileSizeSort sorts a [][]int slice matrix of file data, by size.
+</p>
+<p>
+Takes 2 arguments:
+</p>
+<p>
+1: sli [][]int 		(size matrix with size and original position as column values in every row)
+2: sizePort int 		(as first argument (Bigger first, smaller last) by calling Swap() function
+</p>
+<pre>&lt;No return&gt;
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetPath">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=1350:1392#L50">GetPath</a>
+				<a class="permalink" href="#GetPath">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetPath(args []<a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#bool">bool</a>)</pre>
+			<p>
+GetPath extracts path from CLI argument, if not given it returns current directory path
+</p>
+<p>
+Takes 1 argument:
+1: args []string 	(os.Args)
+</p>
+<p>
+Returns:
+</p>
+<pre>1: string 			(argument path or current working directory)
+2: bool 			(Yes for argument with path from CLI call to blit program)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="GetPathInfo">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=2404:2487#L78">GetPathInfo</a>
+				<a class="permalink" href="#GetPathInfo">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetPathInfo(root <a href="/pkg/builtin/#string">string</a>, cli_ON <a href="/pkg/builtin/#bool">bool</a>) ([][]<a href="/pkg/builtin/#int">int</a>, [][]<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>, <a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#int">int</a>)</pre>
+			<p>
+GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -&gt; Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
+</p>
+<p>
+Takes 2 arguments:
+1: root string 		(Given path from GetPath() )
+2: cli_ON bool 		(True when path was given from command line to blit program)
+</p>
+<p>
+Returns (same as EncapData() :
+</p>
+<pre>1: [][]int 			(File sizes matrix)
+2: [][]string 		(Contains file info -&gt; [n_files]{isDir, lastM, fName, size_HR_Format}  )
+3: error 			(Flagged error obtained from os.Stat(/path/to/file/name/) for each file in 2nd argument dataset)
+4: int64 			(Sum of total file sizes in given path)
+5: int 				(total number of files in given path)
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="RenderData">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=6043:6119#L196">RenderData</a>
+				<a class="permalink" href="#RenderData">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func RenderData(dirs []<a href="/pkg/builtin/#string">string</a>, data [][]<a href="/pkg/builtin/#string">string</a>, totSize <a href="/pkg/builtin/#int64">int64</a>, totFiles <a href="/pkg/builtin/#int">int</a>)</pre>
+			<p>
+RenderData renders a table in CLI. Takes 4 arguments with information from Files in path given as first argument to the program
+</p>
+<p>
+1: []string  		(Slice with y/n values for Directory)
+2: [][]string 		(Sorted Slice from biggest file to lowest size)
+3: int64 			(Total scanned file size combined)
+4: int 				(Total files in given path)//
+</p>
+<pre>&lt;No return&gt;
+</pre>
+
+			
+			
+
+		
+			
+			
+			<h2 id="Swap">func <a href="/src/github.com/ruymanbr/blit.git/src/blit.go?s=7918:7947#L257">Swap</a>
+				<a class="permalink" href="#Swap">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Swap(sli [][]<a href="/pkg/builtin/#int">int</a>, i <a href="/pkg/builtin/#int">int</a>)</pre>
+			<p>
+Swap switches positions of 2 rows from [][]int slice. Rows swapped are i and i+1 index (Takes i int as second argument)
+</p>
+<pre>Takes 2 arguments:
+1: sli[][]int 	(Slice containing file size information in 2 columns)
+2: i int 		(i and i+1 positions where rows are going to be swapped)
+
+&lt;No return&gt;
+</pre>
+
+			
+			
+
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.16.5.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
