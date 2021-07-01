@@ -56,14 +56,15 @@
 
 <p>From CONSOLE, once inside BLIT directory, run the following command</p>
 <ol>
-	<li>go test (or go test blit_test.go)</li>
+	<li>go test</li> 
+	<sub>(or 'go test blit_test.go')</sub>
 </ol>
 <br />
 <h3>Go documentation. GODOC</h3>
 <br />
 <p>Documentation has been provided in this repository in DOC, PDF and godoc format. If you don't have GODOC installed in your system and want to use it to read the program documentation instead PDF/DOC fileformats, follow the next instructions.</p>
 <br />
-<p>Inside Program BLIT, run the next commands:</p>
+<p>Inside BLIT root directory run the following commands:</p>
 <ol>
 	<li>go get golang.org/x/tools/cmd/godoc</li>
 	<li>cd pkg</li>
@@ -72,6 +73,7 @@
 </ol>
 <br />
 <p>You can also see it in your browser using 'godoc' command as follows</p>
+<ol>
 	<li>export BLIT_PATH=/here/path/to/blit/</li>	
 	<li>godoc -http=:8080 -goroot=$BLIT_PATH && x-www-browser http://localhost:8080</li>
 </ol>
