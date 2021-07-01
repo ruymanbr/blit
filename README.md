@@ -1,5 +1,4 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->#Blit
-Welcome to @blit/readme. This is version 0.0.1!
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->Welcome to @blit/readme. This is version 0.0.1!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/blit_logo.png" alt="Logo" width="150" height="auto" />
@@ -18,14 +17,13 @@ Welcome to @blit/readme. This is version 0.0.1!
 <br />
 
 <div id="toc_container" align="center">
-<p class="toc_title" align="left">Content</p>
+<h2 class="toc_title" align="left">Content</h2>
 <ul class="toc_list" align="left">
 	<li><a href="#1-installation">1 Installation</a>  
 	<li><a href="#2-getting-started">2. Getting Started</a></li>
 	<li><a href="#3-production-readiness">3. Production Readiness</a></li>
 </ul>
 </div>
-#installation
 <h2 align="center">1-Installation</h2>
 <br />
 <h3 align="center">Requirements</h3>
@@ -51,7 +49,5 @@ Welcome to @blit/readme. This is version 0.0.1!
 <br />
 <p align="center">You should see a lit of files and folders from the cloned git repo in your console</p>
 <br />
-#getting-started
 
-#production-readiness
 
