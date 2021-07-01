@@ -17,6 +17,11 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <br />
 
+<style>
+	ul {
+		list-style: none;
+	}
+</style>
 <div id="toc_container align="center"">
 <p class="toc_title" align="center">Content</p>
 <ul class="toc_list" align="center" style="list-style: none">
@@ -26,6 +31,11 @@ Welcome to @blit/readme. This is version 0.0.1!
 </ul>
 </div>
 #installation
+<style>
+	ul {
+		list-style: none;
+	}
+</style>
 <h2 align="center">1-Installation</h2>
 <br />
 <h3 align="center">Requirements</h3>
