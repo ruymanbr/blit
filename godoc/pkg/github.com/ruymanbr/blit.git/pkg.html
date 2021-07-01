@@ -7,15 +7,15 @@
 
   <title>blit - Go Documentation Server</title>
 
-<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+<link type="text/css" rel="stylesheet" href="../../../../lib/godoc/style.css">
 
 <script>window.initFuncs = [];</script>
-<script src="/lib/godoc/jquery.js" defer></script>
+<script src="../../../../lib/godoc/jquery.js" defer></script>
 
 
 
 <script>var goVersion = "go1.16.5";</script>
-<script src="/lib/godoc/godocs.js" defer></script>
+<script src="../../../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
 
@@ -24,10 +24,10 @@
 </div><!-- #lowframe -->
 
 <div id="topbar" class="wide"><div class="container">
-<div class="top-heading" id="heading-wide"><a href="/pkg/">Go Documentation Server</a></div>
-<div class="top-heading" id="heading-narrow"><a href="/pkg/">GoDoc</a></div>
-<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
-<form method="GET" action="/search">
+<div class="top-heading" id="heading-wide"><a href="http://localhost:6060/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="http://localhost:6060/pkg/">GoDoc</a></div>
+<a href="pkg.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
 <div id="menu">
 
 <span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
@@ -80,8 +80,8 @@
 			<dd><code>import "github.com/ruymanbr/blit.git/pkg"</code></dd>
 			</dl>
 			<dl>
-			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
-			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			<dd><a href="pkg.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="pkg.html#pkg-index" class="indexLink">Index</a></dd>
 			
 			
 			</dl>
@@ -112,31 +112,31 @@
 			
 			
 				
-				<dd><a href="#ByteToReadableSize">func ByteToReadableSize(bigNum int64) string</a></dd>
+				<dd><a href="pkg.html#ByteToReadableSize">func ByteToReadableSize(bigNum int64) string</a></dd>
 			
 				
-				<dd><a href="#CleanData">func CleanData(rawData [][]string) ([][]string, []string)</a></dd>
+				<dd><a href="pkg.html#CleanData">func CleanData(rawData [][]string) ([][]string, []string)</a></dd>
 			
 				
-				<dd><a href="#EncapData">func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64, int)</a></dd>
+				<dd><a href="pkg.html#EncapData">func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64, int)</a></dd>
 			
 				
-				<dd><a href="#FastSwitchSli">func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][]string</a></dd>
+				<dd><a href="pkg.html#FastSwitchSli">func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][]string</a></dd>
 			
 				
-				<dd><a href="#FileSizeSort">func FileSizeSort(sli [][]int, sizePos int)</a></dd>
+				<dd><a href="pkg.html#FileSizeSort">func FileSizeSort(sli [][]int, sizePos int)</a></dd>
 			
 				
-				<dd><a href="#GetPath">func GetPath(args []string) (string, bool)</a></dd>
+				<dd><a href="pkg.html#GetPath">func GetPath(args []string) (string, bool)</a></dd>
 			
 				
-				<dd><a href="#GetPathInfo">func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int)</a></dd>
+				<dd><a href="pkg.html#GetPathInfo">func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int)</a></dd>
 			
 				
-				<dd><a href="#RenderData">func RenderData(dirs []string, data [][]string, totSize int64, totFiles int)</a></dd>
+				<dd><a href="pkg.html#RenderData">func RenderData(dirs []string, data [][]string, totSize int64, totFiles int)</a></dd>
 			
 				
-				<dd><a href="#Swap">func Swap(sli [][]int, i int)</a></dd>
+				<dd><a href="pkg.html#Swap">func Swap(sli [][]int, i int)</a></dd>
 			
 			
 			
@@ -150,7 +150,7 @@
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go">blit.go</a>
+				<a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go">blit.go</a>
 			
 			</span>
 			</p>
@@ -165,12 +165,12 @@
 		
 			
 			
-			<h2 id="ByteToReadableSize">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=5316:5360#L174">ByteToReadableSize</a>
-				<a class="permalink" href="#ByteToReadableSize">&#xb6;</a>
+			<h2 id="ByteToReadableSize">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=5316:5360#L174">ByteToReadableSize</a>
+				<a class="permalink" href="pkg.html#ByteToReadableSize">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func ByteToReadableSize(bigNum <a href="/pkg/builtin/#int64">int64</a>) <a href="/pkg/builtin/#string">string</a></pre>
+			<pre>func ByteToReadableSize(bigNum <a href="../../../builtin/index.html#int64">int64</a>) <a href="../../../builtin/index.html#string">string</a></pre>
 			<p>
 ByteToReadableSize transform a byte size into human readable form sizes (kb, Mb, Gb, Tb, Pb). Takes 1 argument and returns a HR string for size
 </p>
@@ -189,12 +189,12 @@ Returns:
 		
 			
 			
-			<h2 id="CleanData">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=4687:4744#L157">CleanData</a>
-				<a class="permalink" href="#CleanData">&#xb6;</a>
+			<h2 id="CleanData">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=4687:4744#L157">CleanData</a>
+				<a class="permalink" href="pkg.html#CleanData">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func CleanData(rawData [][]<a href="/pkg/builtin/#string">string</a>) ([][]<a href="/pkg/builtin/#string">string</a>, []<a href="/pkg/builtin/#string">string</a>)</pre>
+			<pre>func CleanData(rawData [][]<a href="../../../builtin/index.html#string">string</a>) ([][]<a href="../../../builtin/index.html#string">string</a>, []<a href="../../../builtin/index.html#string">string</a>)</pre>
 			<p>
 CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
 </p>
@@ -214,12 +214,12 @@ Returns:
 		
 			
 			
-			<h2 id="EncapData">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=3308:3400#L108">EncapData</a>
-				<a class="permalink" href="#EncapData">&#xb6;</a>
+			<h2 id="EncapData">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=3308:3400#L108">EncapData</a>
+				<a class="permalink" href="pkg.html#EncapData">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func EncapData(fileInfo []<a href="/pkg/io/fs/">fs</a>.<a href="/pkg/io/fs/#FileInfo">FileInfo</a>, root <a href="/pkg/builtin/#string">string</a>) ([][]<a href="/pkg/builtin/#int">int</a>, [][]<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>, <a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#int">int</a>)</pre>
+			<pre>func EncapData(fileInfo []<a href="../../../io/fs/index.html">fs</a>.<a href="../../../io/fs/index.html#FileInfo">FileInfo</a>, root <a href="../../../builtin/index.html#string">string</a>) ([][]<a href="../../../builtin/index.html#int">int</a>, [][]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>, <a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#int">int</a>)</pre>
 			<p>
 EncapData extracts data from a []fs.FileInfo dataset in a given path (string).
 </p>
@@ -243,12 +243,12 @@ Returns:
 		
 			
 			
-			<h2 id="FastSwitchSli">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=8593:8680#L276">FastSwitchSli</a>
-				<a class="permalink" href="#FastSwitchSli">&#xb6;</a>
+			<h2 id="FastSwitchSli">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=8593:8680#L276">FastSwitchSli</a>
+				<a class="permalink" href="pkg.html#FastSwitchSli">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func FastSwitchSli(strUnordered [][]<a href="/pkg/builtin/#string">string</a>, orderedSli [][]<a href="/pkg/builtin/#int">int</a>, origPos <a href="/pkg/builtin/#int">int</a>) [][]<a href="/pkg/builtin/#string">string</a></pre>
+			<pre>func FastSwitchSli(strUnordered [][]<a href="../../../builtin/index.html#string">string</a>, orderedSli [][]<a href="../../../builtin/index.html#int">int</a>, origPos <a href="../../../builtin/index.html#int">int</a>) [][]<a href="../../../builtin/index.html#string">string</a></pre>
 			<p>
 FastSwitchSli sorts a [n_files][5]string dataset obtained from &lt;- GetPathInfo() &lt;- EncapData().
 </p>
@@ -270,12 +270,12 @@ Returns:
 		
 			
 			
-			<h2 id="FileSizeSort">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=7290:7333#L231">FileSizeSort</a>
-				<a class="permalink" href="#FileSizeSort">&#xb6;</a>
+			<h2 id="FileSizeSort">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=7290:7333#L231">FileSizeSort</a>
+				<a class="permalink" href="pkg.html#FileSizeSort">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func FileSizeSort(sli [][]<a href="/pkg/builtin/#int">int</a>, sizePos <a href="/pkg/builtin/#int">int</a>)</pre>
+			<pre>func FileSizeSort(sli [][]<a href="../../../builtin/index.html#int">int</a>, sizePos <a href="../../../builtin/index.html#int">int</a>)</pre>
 			<p>
 FileSizeSort sorts a [][]int slice matrix of file data, by size.
 </p>
@@ -295,12 +295,12 @@ Takes 2 arguments:
 		
 			
 			
-			<h2 id="GetPath">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=1350:1392#L50">GetPath</a>
-				<a class="permalink" href="#GetPath">&#xb6;</a>
+			<h2 id="GetPath">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=1350:1392#L50">GetPath</a>
+				<a class="permalink" href="pkg.html#GetPath">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func GetPath(args []<a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#bool">bool</a>)</pre>
+			<pre>func GetPath(args []<a href="../../../builtin/index.html#string">string</a>) (<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#bool">bool</a>)</pre>
 			<p>
 GetPath extracts path from CLI argument, if not given it returns current directory path
 </p>
@@ -321,12 +321,12 @@ Returns:
 		
 			
 			
-			<h2 id="GetPathInfo">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=2404:2487#L78">GetPathInfo</a>
-				<a class="permalink" href="#GetPathInfo">&#xb6;</a>
+			<h2 id="GetPathInfo">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=2404:2487#L78">GetPathInfo</a>
+				<a class="permalink" href="pkg.html#GetPathInfo">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func GetPathInfo(root <a href="/pkg/builtin/#string">string</a>, cli_ON <a href="/pkg/builtin/#bool">bool</a>) ([][]<a href="/pkg/builtin/#int">int</a>, [][]<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>, <a href="/pkg/builtin/#int64">int64</a>, <a href="/pkg/builtin/#int">int</a>)</pre>
+			<pre>func GetPathInfo(root <a href="../../../builtin/index.html#string">string</a>, cli_ON <a href="../../../builtin/index.html#bool">bool</a>) ([][]<a href="../../../builtin/index.html#int">int</a>, [][]<a href="../../../builtin/index.html#string">string</a>, <a href="../../../builtin/index.html#error">error</a>, <a href="../../../builtin/index.html#int64">int64</a>, <a href="../../../builtin/index.html#int">int</a>)</pre>
 			<p>
 GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -&gt; Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
 </p>
@@ -351,12 +351,12 @@ Returns (same as EncapData() :
 		
 			
 			
-			<h2 id="RenderData">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=6043:6119#L196">RenderData</a>
-				<a class="permalink" href="#RenderData">&#xb6;</a>
+			<h2 id="RenderData">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=6043:6119#L196">RenderData</a>
+				<a class="permalink" href="pkg.html#RenderData">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func RenderData(dirs []<a href="/pkg/builtin/#string">string</a>, data [][]<a href="/pkg/builtin/#string">string</a>, totSize <a href="/pkg/builtin/#int64">int64</a>, totFiles <a href="/pkg/builtin/#int">int</a>)</pre>
+			<pre>func RenderData(dirs []<a href="../../../builtin/index.html#string">string</a>, data [][]<a href="../../../builtin/index.html#string">string</a>, totSize <a href="../../../builtin/index.html#int64">int64</a>, totFiles <a href="../../../builtin/index.html#int">int</a>)</pre>
 			<p>
 RenderData renders a table in CLI. Takes 4 arguments with information from Files in path given as first argument to the program
 </p>
@@ -375,12 +375,12 @@ RenderData renders a table in CLI. Takes 4 arguments with information from Files
 		
 			
 			
-			<h2 id="Swap">func <a href="/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=7918:7947#L257">Swap</a>
-				<a class="permalink" href="#Swap">&#xb6;</a>
+			<h2 id="Swap">func <a href="http://localhost:6060/src/github.com/ruymanbr/blit.git/pkg/blit.go?s=7918:7947#L257">Swap</a>
+				<a class="permalink" href="pkg.html#Swap">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func Swap(sli [][]<a href="/pkg/builtin/#int">int</a>, i <a href="/pkg/builtin/#int">int</a>)</pre>
+			<pre>func Swap(sli [][]<a href="../../../builtin/index.html#int">int</a>, i <a href="../../../builtin/index.html#int">int</a>)</pre>
 			<p>
 Swap switches positions of 2 rows from [][]int slice. Rows swapped are i and i+1 index (Takes i int as second argument)
 </p>
@@ -411,7 +411,7 @@ Build version go1.16.5.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
-and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
 <a href="https://golang.org/doc/tos.html">Terms of Service</a> |
 <a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
