@@ -19,11 +19,11 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <div id="toc_container align="center"">
 <p class="toc_title" align="center">Content</p>
-<ul style="list-style: none" class="toc_list" align="center">
+<ul style="list-style: none"> class="toc_list" align="center">
 	<li><a href="#1-installation">1 Installation</a>  
 	<li><a href="#2-getting-started">2. Getting Started</a></li>
 	<li><a href="#3-production-readiness">3. Production Readiness</a></li>
-</ul style="list-style: none">
+</ul>
 </div>
 #installation
 <h2 align="center">1-Installation</h2>
