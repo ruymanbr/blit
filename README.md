@@ -25,9 +25,7 @@
 </ul>
 </div>
 <h2>1-Installation</h2>
-<br />
 <h3>Requirements</h3>
-<br />
 <ul>
 	<li>Ubuntu 16.04 or newer (tested in Ubuntu 16.04)</li>
 	<li>Go version 1.16 or newer <sub>(Go to: <a href="https://golang.org/doc/install">Go install</a> to learn how to install it)</sub></li>
@@ -35,7 +33,6 @@
 </ul>
 <br />
 <h3>Steps</h3>
-<br />
 <p>Open a Console in Ubuntu and follow this steps</p>
 <br />
 <ul>
@@ -50,9 +47,7 @@
 <p>You should see a lit of files and folders from the cloned git repo in your console</p>
 <br />
 <h2>2-Getting Started</h2>
-<br />
 <h3>Testing the package</h3>
-<br />
 
 <p>From CONSOLE, once inside BLIT directory, run the following command</p>
 <ol>
@@ -61,7 +56,6 @@
 </ol>
 <br />
 <h3>Go documentation. GODOC</h3>
-<br />
 <p>Documentation has been provided in this repository in DOC, PDF and godoc format. If you don't have GODOC installed in your system and want to use it to read the program documentation instead PDF/DOC fileformats, follow the next instructions.</p>
 <br />
 <p>Inside BLIT root directory run the following commands:</p>
@@ -79,15 +73,12 @@
 </ol>
 <br />
 <h2>3-Production Readiness</h2>
-<br />
 <h3>Discussion</h3>
-<br />
 <p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app from Redux)</p>
 <br />
 <p>You can execute the demonstration in the next section</p>
 <br />
 <h3>Recommendations for backend</h3>
-<br />
 <ul>
 	<li>Further testing could be implemented.</li>
 	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
