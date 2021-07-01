@@ -78,5 +78,47 @@
 	<li>godoc -http=:8080 -goroot=$BLIT_PATH && x-www-browser http://localhost:8080</li>
 </ol>
 <br />
-
+<h2>3-Production Readiness</h2>
+<br />
+<h3>Discussion</h3>
+<br />
+<p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app from Redux)</p>
+<br />
+<p>You can execute the demonstration in the next section</p>
+<br />
+<h3>Recommendations for backend</h3>
+<br />
+<ul>
+	<li>Further testing could be implemented.</li>
+	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
+	<li>A function that gets CLI parameters for different rendering options could be implemented</li>
+		<sub>Examples:</sub>
+		<ul>			
+			<li>blit -path="/path/to/a/folder/"</li>
+			<sub>Instead of taking the first parameter as it goes now (i.e.: blit /path/here)</sub>
+			<li>blit -size="asc"</li>
+			<sub>To display files from smaller to bigger in size</sub>
+			<li>blit -date="asc"</li>
+			<sub>To display files from more recently modified to last date modified</sub>
+			<li>blit -date="desc"</li>
+			<sub>The opposite</sub>
+			<li>blit -filter="abcd"</li>
+			<sub>To display only files with 'abcd' in their names (0000abcd.doc; 98abcd_this_too.pdf) ... and so on</sub>
+			<li></li>
+		</ul>
+		<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+</ul>
+<br />
+<h3>Recommendations for Frontend</h3>
+<ul>
+	<li></li>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	<li></li>
+</ul>
+{{ load:readme/4-frontend-demonstration.md }}
 
