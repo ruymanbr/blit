@@ -93,7 +93,12 @@
 	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
 	<li>Some more error handling in code could be added</li>
 	<sub>It's fairly managed, but some user enter parameters could fire up some errors that could develop in function called inside the program.</sub>
-	<li>Further argument development of BLIT program. More CLI parameters for different options</li>
+	<li>Stability improvements</li>
+		<ul>
+			<li>Implementation of methods that have ability to recover or retry the operation that failed</li>
+		</ul>
+	<li>More argument complexity in BLIT CLI.</li>
+	<sub>(Parameters for different options)</sub>
 		<sub>Examples:</sub>
 		<ul>			
 			<li>blit -path="/path/to/a/folder/"</li>
@@ -122,7 +127,21 @@
 		</ul>
 	<li>OS compatibility</li>
 		<ul>
-			<li>Make paths to be compatible with every other OS (Windows, Mac, ...)</li>
+			<li>Make paths to be compatible with main OS in market (Windows, Mac, ...)</li>
+			<li>Backwards compatibility with older versions of OS would be nice to have</li>
+		</ul>
+	<li>Loggin ability</li>
+	<sub>When errors happen, the ability to log and communicate, even through cloud APIs would be nice to have. Third party implementations with this program could get feedback and also recover from error handling calls to this aplication (maybe calling a 2nd option if this is unavailable due to some error, or format taken isn't parametrized according to user/app call, but the 2nd option is)</sub>
+	<li>Go older version's Compatibility</li>
+	<sub>Code could be implemented to work with older versions. Proper error handling for this cases, and further testing should be implemented to make sure it has backwards compatibility</sub>
+	<li>User error workarounds</li>
+	<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
+	<li>Modularization</li>
+	<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately. That would lead to a better integration with other programs (API calls, etc)</sub>
+	<li>Security:</li>
+		<ul>
+			<li>i.e: Handling calls when system where program is installed but user calling (API) isn't allowed to see folder content</li>
+			<li></li>
 		</ul>
 </ul>
 <br />
