@@ -17,30 +17,20 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <br />
 
-<style>
-	ul {
-		list-style: none;
-	}
-</style>
-<div id="toc_container align="center"">
-<p class="toc_title" align="center">Content</p>
-<ul class="toc_list" align="center" style="list-style: none">
-	<li style="list-style: none"><a href="#1-installation">1 Installation</a>  
-	<li style="list-style: none"><a href="#2-getting-started">2. Getting Started</a></li>
-	<li style="list-style: none"><a href="#3-production-readiness">3. Production Readiness</a></li>
+<div id="toc_container" align="center">
+<p class="toc_title" align="left">Content</p>
+<ul class="toc_list" align="left">
+	<li><a href="#1-installation">1 Installation</a>  
+	<li><a href="#2-getting-started">2. Getting Started</a></li>
+	<li><a href="#3-production-readiness">3. Production Readiness</a></li>
 </ul>
 </div>
 #installation
-<style>
-	ul {
-		list-style: none;
-	}
-</style>
 <h2 align="center">1-Installation</h2>
 <br />
 <h3 align="center">Requirements</h3>
 <br />
-<ul style="list-style: none">
+<ul>
 	<li>Ubuntu 16.04 or newer (tested in Ubuntu 16.04)</li>
 	<li>Go version 1.16 or newer</li>
 	<li>Git installed in your system (To see instructions on how to install Git in Ubuntu go to: <a href="https://github.com/git-guides/install-git#install-git-on-linux">Install Git on Linux</a></li>
@@ -50,7 +40,7 @@ Welcome to @blit/readme. This is version 0.0.1!
 <br />
 <p>Open a Console in Ubuntu and follow this steps</p>
 <br />
-<ul style="list-style: none">
+<ul>
 	<li>cd ~</li>
 	<li>mkdir temp && cd temp</li>
 	<li>git clone https://github.com/ruymanbr/blit.git</li>
