@@ -17,6 +17,7 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <br />
 
+{{ template:demo_img}}
 bullets
 {{ template:toc }}
 #installation
