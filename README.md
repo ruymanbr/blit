@@ -12,7 +12,7 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <p align="center">
   <b>List files and folders in a given path. Displays the next information: DIR y/n - Last modified date - file/folder name - size</b></br>
-  <sub> Go here to see a demo <a href="[object Object]">[object Object]</a>.<sub>
+  <sub> Go here to see a demo <a href="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demo_img.gif">https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demo_img.gif</a>.<sub>
 </p>
 
 <br />
