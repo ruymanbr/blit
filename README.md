@@ -80,7 +80,7 @@
 <br />
 <h3>Recommendations for backend</h3>
 <ul>
-	<li>Further testing could be implemented.</li>
+	<li>Further testing could be implemented: FastSwitchSli function have no test implemented yet</li>
 	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
 	<li>Some more error handling in code could be added</li>
 	<sub>It's fairly managed, but some user enter parameters could fire up some errors that could develop in function called inside the program.</sub>
