@@ -91,7 +91,9 @@
 <ul>
 	<li>Further testing could be implemented.</li>
 	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
-	<li>A function that gets CLI parameters for different rendering options could be implemented</li>
+	<li>Some more error handling in code could be added</li>
+	<sub>It's fairly managed, but some user enter parameters could fire up some errors that could develop in function called inside the program.</sub>
+	<li>Further argument development of BLIT program. More CLI parameters for different options</li>
 		<sub>Examples:</sub>
 		<ul>			
 			<li>blit -path="/path/to/a/folder/"</li>
@@ -107,6 +109,21 @@
 			<li></li>
 		</ul>
 		<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+	<li>Simplification of functions:</li>
+		<ul>
+			<li>Several functions are in a beta state. E.g.: Too many parameters returned.</li>
+			<li>Code could be fragmented even more to specialize some functions to make this more modular and reusable. Although it's fairly optimized</li>
+		</ul>
+	<li>Further Beautification:</li>
+		<ul>
+			<li>Colouring Folders instead of column specifying whenever a "file" is in reality a folder</li>
+			<li>Colouring files in different tones depending on file size</li>
+			<sub>(biggest in different tones of red, lighter in different tones of green, etc)</sub>
+		</ul>
+	<li>OS compatibility</li>
+		<ul>
+			<li>Make paths to be compatible with every other OS (Windows, Mac, ...)</li>
+		</ul>
 </ul>
 <br />
 <h3>Recommendations for Frontend</h3>
