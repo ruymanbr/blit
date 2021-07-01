@@ -17,11 +17,33 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <br />
 
-bullets
-{{ template:toc }}
 #installation
-{{ load:readme/1-installation.md }}
+<h2 align="center">1-Installation</h2>
+<br />
+<h3 align="center">Requirements</h3>
+<br />
+<ul>
+	<li>Ubuntu 16.04 or newer (tested in Ubuntu 16.04)</li>
+	<li>Go version 1.16 or newer</li>
+	<li>Git installed in your system (To see instructions on how to install Git in Ubuntu go to: <a href="https://github.com/git-guides/install-git#install-git-on-linux">Install Git on Linux</a></li>
+</ul>
+<br />
+<h3 align="center">Steps</h3>
+<br />
+<p>Open a Console in Ubuntu and follow this steps</p>
+<br />
+<ul>
+	<li>cd ~</li>
+	<li>mkdir temp && cd temp</li>
+	<li>git clone https://github.com/ruymanbr/blit.git</li>
+	<li>cd blit</li>
+	<li>go build blit.go</li>
+	<li>go run blit.go (or ./blit)</li>
+</ul>
+<br />
+<p align="center">You should see a lit of files and folders from the cloned git repo in your console</p>
+<br />
 #getting-started
-{{ load:readme/2-getting-started.md }}
+
 #production-readiness
-{{ load:readme/3-production-readiness.md }}
+
