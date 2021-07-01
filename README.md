@@ -12,17 +12,16 @@ Welcome to @blit/readme. This is version 0.0.1!
 
 <p align="center">
   <b>List files and folders in a given path. Displays the next information: DIR y/n - Last modified date - file/folder name - size</b></br>
-  <sub><sub>
+  <sub> Go here to see a demo <a href="[object Object]">[object Object]</a>.<sub>
 </p>
 
 <br />
 
-{{ template:demo_img}}
 bullets
 {{ template:toc }}
 #installation
-
+{{ load:readme/1-installation.md }}
 #getting-started
-
+{{ load:readme/2-getting-started.md }}
 #production-readiness
-
+{{ load:readme/3-production-readiness.md }}
