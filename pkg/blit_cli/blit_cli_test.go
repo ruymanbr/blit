@@ -143,13 +143,13 @@ func TestEncapData(t *testing.T) {
     }
     
     for i, test := range tests {
-    	_, _, err, totSize, totFiles := EncapData(test.files, test.path)
+    	allFiles, err, totSize, totFiles := EncapData(test.files, test.path)
 
     	if err != nil {
-    		t.Errorf("%v Test %v - Couldn't complete. GOT: %v files, %v total size  // WANT: >0 files, >0 (B, Kb, Mb, ...) total size\n", NotPassed, i+1, totFiles, ByteToReadableSize(totSize))
+    		t.Errorf("%v Test %v - Couldn't complete. GOT: %v files, %v total size  // WANT: >0 files, >0 (B, Kb, Mb, ...) total size\n", NotPassed, i+1, len(allFiles), ByteToReadableSize(totSize))
     		TotalNotPassed += 1
     	} else {
-    		fmt.Printf("%v Test %v - GOT: %v files, %v total size  // WANT: >0 files, >0 (B, Kb, Mb, ...) total size\n", Passed, i+1, totFiles, ByteToReadableSize(totSize))
+    		fmt.Printf("%v Test %v - GOT: %v files, %v total size  // WANT: >0 files, >0 (B, Kb, Mb, ...) total size\n", Passed, i+1, len(allFiles), ByteToReadableSize(totSize))
     		TotalPassed += 1
     	}
     }
