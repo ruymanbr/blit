@@ -35,15 +35,16 @@ func (p *PathError) Error() string {
 	return fmt.Sprintf("Path %v ...is incorrect", p.path)
 }
 
+// Handler calls blit_cli functions to process request for a given path.
+// 
+// Takes 1 argument:
+// 1: path []string 	(path to handle)
+//
+// Returns: 
+//	1: error 			(if path is not a valid or existant folder in system)
 func Handler(path string) error {
-    //path, cli_on := GetPath(os.Args)
-    
-	//if (cli_on) {
-		fmt.Println("Path: ", path)
-	//} else {
-	//	fmt.Println("Current folder: ", path)
-
-	//}	
+    fmt.Println("Path: ", path)
+	
 	
 	fileInfo, err := GetPathInfo(path)
 
@@ -84,19 +85,14 @@ func GetPath(args []string) (string, bool) {
 	return curr_wd, false	
 }
 
-// GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -> Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
+// GetPathInfo extracts info from a given path. 
 // 
-// Takes 2 arguments:
-// 1: root string 		(Given path from GetPath() )
-// 2: cli_ON bool 		(True when path was given from command line to blit program)
+// Takes 1 argument:
+// 1: root string 		(Path to extract info from)
 //
 // Returns (same as EncapData() :
-//	1: [][]int 			(File sizes matrix)
-//	2: [][]string 		(Contains file info -> [n_files]{isDir, lastM, fName, size_HR_Format}  )
-//	3: error 			(Flagged error obtained from os.Stat(/path/to/file/name/) for each file in 2nd argument dataset)
-//	4: int64 			(Sum of total file sizes in given path)
-//	5: int 				(total number of files in given path)
-//func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int) {
+//	1: []fs.FileInfo	(slice with info from files and folders)
+//	2: error 			(not nilfor failing to open or failing reading it)
 func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var emptyPath []fs.FileInfo
 	f, err := os.Open(root)
@@ -111,7 +107,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 		return emptyPath, err
 	}
 	//if (cli_ON) {
-		return EncapData(fileInfo, root)
+		return fileInfo, nil
 	//} 
 	//return EncapData(fileInfo, "")
 }
