@@ -112,6 +112,43 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	}
 }
 
+// TestEncapSizes tests a mockup process like EncapSizes from package blit_cli
+func TestEncapSizes(b *testing.B) {
+	var sizes [][]int
+	var sizesExpected = [][]int{
+		{0, 3145728},
+		{1, 1048576},
+		{2, 1073741824},
+	}
+	var pathsData = []struct {
+		path string
+		pos int
+		size int64
+	}{
+		{"/home/", 0, 3145728},
+		{"/usr/", 1, 1048576},
+		{"/usr/local/", 2, 1073741824},
+	}
+
+	for i, testPath := range pathsData {
+		size := testPath.size		
+		sizeN := int(size)			
+		sizeLine	:= []int{i, sizeN}
+		sizes		= append(sizes, sizeLine)
+	}
+
+	for i, sizeProcessed := range sizesExpected {
+		if sizes[i][1] != sizesExpected[1] {
+			t.Errorf("%v Test %v - Not the expected value in slice position %v\n", NotPassed, i+1, i)
+			TotalNotPassed += 1
+		} else {
+			fmt.Printf("%v Test %v - GOT: %v // WANT: %v\n", Passed, i+1, sizes[i][1], sizesExpected[1])
+			TotalPassed += 1
+		}
+	}
+
+}
+
 // TestEncapData tests function EncapData from package blit_cli
 func TestEncapData(t *testing.T) {
 	
