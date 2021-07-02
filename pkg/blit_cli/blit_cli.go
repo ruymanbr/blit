@@ -36,7 +36,7 @@ func Handler(path string) {
 	//	fmt.Println("Current folder: ", path)
 
 	//}	
-	sizesSli, encap_data, err, totSize, totFiles	:= GetPathInfo(path, cli_on)
+	sizesSli, encap_data, err, totSize, totFiles	:= GetPathInfo(path)
 
     if err != nil {
     	panic(err)
