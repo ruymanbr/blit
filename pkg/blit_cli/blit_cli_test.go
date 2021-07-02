@@ -195,7 +195,7 @@ func TestEncapData(t *testing.T) {
 // BenchmarkEncapData tests EncapData performance
 func BenchmarkEncapData(b *testing.B) {
 	path := "/home/"
-	fileInfo, err := GetPathInfo(path)
+	fileInfo, _ := GetPathInfo(path)
 	
 	for i := 0; i < b.N; i++ {
 		EncapData(fileInfo, path)
