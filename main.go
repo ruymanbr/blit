@@ -71,23 +71,28 @@ func main() {
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 func HandlePath(path string) ([]fs.FileInfo, error) {
 	var fileInfo []fs.FileInfo
+	SlashBefore := "/" + path
+	SlashAfter 	:= path + "/"
+	BothSlashes	:= "/" + path + "/"
+
+	var paths = []struct{
+		newPath string
+	}{
+		{SlashBefore},
+		{SlashAfter},
+		{BothSlashes},
+	}
+	fmt.Println("Alternative paths: ", paths)
+
+	fmt.Println("Trying path: ", path)
 	fileInfo, err := blit_cli.GetPathInfo(path)	
 
 	if err != nil {
-		SlashBefore 	:= "/" + path
-		SlashAfter 		:= path + "/"
-		BothSlashes		:= "/" + path + "/"
-
-		paths = []struct{
-			newPath string
-		}{
-			SlashBefore,
-			SlashAfter,
-			BothSlashes,
-		}
-
-		for tryPath := range paths {
-			fileInfo, err := blit_cli.GetPathInfo(tryPath.newPath)
+		fmt.Println("Error: ", err)
+		fmt.Println("Trying alternative paths: ", paths)
+		for _, tryPath := range paths {
+			fmt.Println("Trying path: ", tryPath.newPath)
+			fileInfo, err = blit_cli.GetPathInfo(tryPath.newPath)
 			if err == nil {
 				break
 			}
