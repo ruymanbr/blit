@@ -105,7 +105,7 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 		stats, err := os.Stat(path + fName)
 
 		if err != nil {
-			fmt.Println("err: ", err)
+			fmt.Println("os.Stat failed. err: ", err)
 			return files, err, 0
 		}
 
