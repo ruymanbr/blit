@@ -109,7 +109,11 @@
 				<li></li>
 			</ul>	
 		</ul>		
-		<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+	<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+	<li>Documentation:</li>
+		<ul>
+			<li>Examples should be added in blit_test.go to be displayed in Blit documentation (godoc)</li>
+		</ul>
 	<li>Simplification of functions:</li>
 		<ul>
 			<li>Several functions are in a beta state. E.g.: Too many parameters returned.</li>
