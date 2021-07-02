@@ -98,9 +98,11 @@ func GetPathInfo(root string) ([][]int, [][]string, error, int64, int) {
 		panic(root, err)
 	}
 	fileInfo, err := f.Readdir(-1)
-	f.Close()
+	defer func() {
+		f.Close()
+	}
 	if err != nil {
-		panic(err)
+		panic(root, err)
 	}
 	//if (cli_ON) {
 		return EncapData(fileInfo, root)
