@@ -22,6 +22,7 @@
 	<li><a href="#1-installation">1 Installation</a>  
 	<li><a href="#2-getting-started">2. Getting Started</a></li>
 	<li><a href="#3-production-readiness">3. Production Readiness</a></li>
+	<li><a href="#4-production-readiness">4. Frontend demonstration (React App UI + API)</a></li>
 </ul>
 </div>
 <h2>1-Installation</h2>
@@ -142,5 +143,6 @@
 		<sub>Better encapsulation and isolation of data</sub>
 	</ul>
 </ul>
-
+<h2>4-Frontend demonstration</h2>
+<sub>(React App UI + API)</sub>
 
