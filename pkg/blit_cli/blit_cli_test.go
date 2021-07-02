@@ -74,7 +74,7 @@ func TestGetPath(t *testing.T) {
 
 // BenchmarkGetPath tests GetPath performance 
 func BenchmarkGetPath(b *testing.B) {
-	args = []string{"cmd", "/home/"}
+	var args = []string{"cmd", "/home/"}
 
 	for i := 0; i < b.N; i++ {
 		GetPath(args)
