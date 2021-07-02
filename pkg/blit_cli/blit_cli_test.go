@@ -108,7 +108,7 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	path := "/usr/"
 
 	for i := 0; i < b.N; i++ {
-		GetPathInfo(path)
+		_, _ := GetPathInfo(path)
 	}
 }
 
