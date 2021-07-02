@@ -99,6 +99,15 @@ func TestGetPathInfo(t *testing.T) {
 	}
 }
 
+// BenchGetPathInfo tests GetPathInfo performance
+func BenchmarkGetPathInfo(b *testing.B) {
+	path := "/usr/"
+
+	for i := 0; i < b.N; i++ {
+		GetPathInfo(path, true)
+	}
+}
+
 // EncapData tests function EncapData from package main in blit.go
 func TestEncapData(t *testing.T) {
 	
