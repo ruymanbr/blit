@@ -145,6 +145,7 @@ func EncapSizes(fileInfo []fs.FileInfo) ([][]int) {
 		sizeLine	:= []int{i, sizeN}
 		sizes		= append(sizes, sizeLine)
 	}
+	fmt.Println("Sizes = ", sizes)
 	return sizes
 }
 
