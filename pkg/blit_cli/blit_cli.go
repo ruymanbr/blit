@@ -102,6 +102,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var empty []fs.FileInfo
 	f, err := os.Open(root)
 	if err != nil {
+		fmt.Printf("os.Open at %v returned error %v\n", root, err)
 		return empty, err
 	}
 	fileInfo, err := f.Readdir(-1)
