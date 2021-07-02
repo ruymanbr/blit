@@ -91,22 +91,24 @@
 			<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
 		</ul>
 	<li>Complexity and Coverage</li>
-		<li>More argument complexity in BLIT CLI.</li>
-		<sub>(Parameters for different options)</sub>
-		<sub>Examples:</sub>
-		<ul>			
-			<li>blit -path="/path/to/a/folder/"</li>
-			<sub>Instead of taking the first parameter as it goes now (i.e.: blit /path/here)</sub>
-			<li>blit -size="asc"</li>
-			<sub>To display files from smaller to bigger in size</sub>
-			<li>blit -date="asc"</li>
-			<sub>To display files from more recently modified to last date modified</sub>
-			<li>blit -date="desc"</li>
-			<sub>The opposite</sub>
-			<li>blit -filter="abcd"</li>
-			<sub>To display only files with 'abcd' in their names (0000abcd.doc; 98abcd_this_too.pdf) ... and so on</sub>
-			<li></li>
-		</ul>
+		<ul>
+			<li>More argument complexity in BLIT CLI.</li>
+			<sub>(Parameters for different options)</sub>
+			<sub>Examples:</sub>
+			<ul>			
+				<li>blit -path="/path/to/a/folder/"</li>
+				<sub>Instead of taking the first parameter as it goes now (i.e.: blit /path/here)</sub>
+				<li>blit -size="asc"</li>
+				<sub>To display files from smaller to bigger in size</sub>
+				<li>blit -date="asc"</li>
+				<sub>To display files from more recently modified to last date modified</sub>
+				<li>blit -date="desc"</li>
+				<sub>The opposite</sub>
+				<li>blit -filter="abcd"</li>
+				<sub>To display only files with 'abcd' in their names (0000abcd.doc; 98abcd_this_too.pdf) ... and so on</sub>
+				<li></li>
+			</ul>	
+		</ul>		
 		<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
 	<li>Simplification of functions:</li>
 		<ul>
