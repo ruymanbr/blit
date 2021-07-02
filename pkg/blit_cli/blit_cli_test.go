@@ -26,7 +26,7 @@ var Passed 			= "\033[32m PASSED: \033[97m"
 var TotalPassed 	= 0
 var TotalNotPassed 	= 0
 
-// TestGetPath_tests GetPath from package blit_cli
+// TestGetPath_tests GetPath 
 func TestGetPath(t *testing.T) {
 	var tests = []struct {
 		args []string
@@ -72,7 +72,16 @@ func TestGetPath(t *testing.T) {
 	}
 }
 
-// TestGetPathInfo tests function GetPathInfo from package blit_cli
+// BenchmarkGetPath tests GetPath performance 
+func BenchmarkGetPath(b *testing.B) {
+	args = []string{"cmd", "/home/"}
+
+	for i := 0; i < b.N; i++ {
+		GetPath(args)
+	}
+}
+
+// TestGetPathInfo tests function GetPathInfo 
 func TestGetPathInfo(t *testing.T) {
 	var tests = []struct {
 		path string
@@ -112,7 +121,7 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	}
 }
 
-// TestEncapSizes tests a mockup process like EncapSizes from package blit_cli
+// TestEncapSizes tests a mockup process like EncapSizes 
 func TestEncapSizes(t *testing.T) {
 	var sizes [][]int
 	var sizesExpected = [][]int{
@@ -149,7 +158,17 @@ func TestEncapSizes(t *testing.T) {
 
 }
 
-// TestEncapData tests function EncapData from package blit_cli
+// BenchmarkEncapSizes tests EncapSizes performance
+func BenchmarkEncapSizes(b *testing.B) {
+	path := "/home/"
+	fileInfo, _ := GetPathInfo(path)
+	
+	for i := 0; i < b.N; i++ {
+		EncapSizes(fileInfo)
+	}
+}
+
+// TestEncapData tests function EncapData 
 func TestEncapData(t *testing.T) {
 	
     type Test struct {
@@ -202,7 +221,7 @@ func BenchmarkEncapData(b *testing.B) {
 	}
 }
 
-// TestCleanData tests function CleanData from package blit_cli
+// TestCleanData tests function CleanData 
 func TestCleanData(t *testing.T) {
 	var tests = []struct {
 		fullSli [][]string
@@ -237,7 +256,7 @@ func TestCleanData(t *testing.T) {
 	}	
 }
 
-// TestByteToReadableSize tests function ByteToReadableSize from package blit_cli
+// TestByteToReadableSize tests function ByteToReadableSize 
 func TestByteToReadableSize(t *testing.T) {
 	var tests = []struct {
 		num int64
@@ -266,7 +285,7 @@ func TestByteToReadableSize(t *testing.T) {
 }
 
 
-// TestFileSizeSort tests function FileSizeSort from package blit_cli
+// TestFileSizeSort tests function FileSizeSort 
 func TestFileSizeSort(t *testing.T)  {
 	var tests = []struct{
 		sizeSli [][]int
@@ -304,7 +323,16 @@ func TestFileSizeSort(t *testing.T)  {
 
 }
 
-// TestSwap tests function Test from package blit_cli
+// BenchmarkFileSizeSort tests FileSizeSort performance
+func BenchmarkFileSizeSort(b *testing.B) {
+	var sli = [][]int{{1229,0},{1048576,1},{3113851290,2},{2202009,3},{1073741824,4},{2097152,5}}
+
+	for i := 0; i < b.N; i++ {
+		FileSizeSort(sli, 0)
+	}
+}
+
+// TestSwap tests function Test 
 func TestSwap(t *testing.T) {
 	var tests = []struct{
 		sizeSli [][]int
