@@ -142,5 +142,5 @@
 		<sub>Better encapsulation and isolation of data</sub>
 	</ul>
 </ul>
-{{ load:readme/4-frontend-demonstration.md }}
+
 
