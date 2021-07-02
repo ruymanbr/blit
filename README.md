@@ -79,18 +79,20 @@
 <p>You can execute the demonstration in the next section</p>
 <br />
 <h3>Recommendations for backend</h3>
-<ul>
-	<li>Further testing could be implemented: FastSwitchSli function have no test implemented yet</li>
-	<li>Benchmarking tests aren't implemented. This should be done to proper evaluate performance. Specially for scaling up and remote using this program</li>
-	<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
-	<li>Some more error handling in code could be added</li>
-	<sub>It's fairly managed, but some user enter parameters could fire up some errors that could develop in function called inside the program.</sub>
-	<li>Stability improvements</li>
+<ul><li>Stability improvements</li>
 		<ul>
 			<li>Implementation of methods that have ability to recover or retry the operation that failed</li>
+			<li>Further testing should be implemented: FastSwitchSli function have no test implemented yet</li>
+			<li>Further Benchmarking tests should be implemented. This should be done to proper evaluate performance. Specially for scaling up and remote using this program. Only the slower function (at first glance) has been benchmarked (GetPathInfo, which calls EncapData)</li>
+			<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
+			<li>Some more error handling in code could be added, specially with the use of Recover for increased stability</li>
+			<sub>It's fairly managed, but some user entering parameters in some cases maight develop in error during runtime. Hence the need for more testing</sub>
+			<li>User error workarounds</li>
+			<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
 		</ul>
-	<li>More argument complexity in BLIT CLI.</li>
-	<sub>(Parameters for different options)</sub>
+	<li>Complexity and Coverage</li>
+		<li>More argument complexity in BLIT CLI.</li>
+		<sub>(Parameters for different options)</sub>
 		<sub>Examples:</sub>
 		<ul>			
 			<li>blit -path="/path/to/a/folder/"</li>
@@ -110,6 +112,8 @@
 		<ul>
 			<li>Several functions are in a beta state. E.g.: Too many parameters returned.</li>
 			<li>Code could be fragmented even more to specialize some functions to make this more modular and reusable. Although it's fairly optimized</li>
+			<li>Modularization</li>
+			<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately. That would lead to a better integration with other programs (API calls, etc)</sub>
 		</ul>
 	<li>Further Beautification:</li>
 		<ul>
@@ -122,19 +126,15 @@
 			<li>Make paths to be compatible with main OS in market (Windows, Mac, ...)</li>
 			<li>Backwards compatibility with older versions of OS would be nice to have</li>
 		</ul>
-	<li>Loggin ability</li>
+	<li>Logging ability</li>
 	<sub>When errors happen, the ability to log and communicate, even through cloud APIs would be nice to have. Third party implementations with this program could get feedback and also recover from error handling calls to this aplication (maybe calling a 2nd option if this is unavailable due to some error, or format taken isn't parametrized according to user/app call, but the 2nd option is)</sub>
-	<li>Go older version's Compatibility</li>
-	<sub>Code could be implemented to work with older versions. Proper error handling for this cases, and further testing should be implemented to make sure it has backwards compatibility</sub>
-	<li>User error workarounds</li>
-	<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
-	<li>Modularization</li>
-	<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately. That would lead to a better integration with other programs (API calls, etc)</sub>
+	<li>Go legacy compatibility</li>
+	<sub>Code could be implemented to work with older versions. Proper error handling for this cases, and further testing should be implemented to make sure it has backwards compatibility</sub>	
 	<li>Security:</li>
-		<ul>
-			<li>i.e: Handling calls when system where program is installed but user calling (API) isn't allowed to see folder content</li>
-			<li></li>
-		</ul>
+	<ul>
+		<li>i.e: Handling calls when system where program is installed but user calling (API) isn't allowed to see folder content</li>
+		<sub>Better encapsulation and isolation of data</sub>
+	</ul>
 </ul>
 {{ load:readme/4-frontend-demonstration.md }}
 
