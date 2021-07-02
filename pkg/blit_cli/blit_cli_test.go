@@ -113,7 +113,7 @@ func BenchmarkGetPathInfo(b *testing.B) {
 }
 
 // TestEncapSizes tests a mockup process like EncapSizes from package blit_cli
-func TestEncapSizes(b *testing.B) {
+func TestEncapSizes(t *testing.T) {
 	var sizes [][]int
 	var sizesExpected = [][]int{
 		{0, 3145728},
