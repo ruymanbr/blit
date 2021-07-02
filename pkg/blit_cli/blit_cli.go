@@ -48,6 +48,7 @@ func Handler(path string) error {
 	
 	fileInfo, err := GetPathInfo(path)
 	if err != nil {
+		fmt.Println("fileInfo is not valid: ", fileInfo)
 		return err
 	}
 	sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, path)
