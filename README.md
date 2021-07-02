@@ -97,6 +97,7 @@
 			<li>Implementation of goroutines for parallel/concurrent executions of backend instances (More requests whenever more threads can run concurrently)</li>
 			<li>Implementation of channeling and buffering in channels to further expand stability and capacity of backend</li>
 			<li>Separation of blit_frontend program to run independently of backend server</li>
+			<li>Implementation of caching, and several good practices for Frontend to further expand our memory and cpu management,even when scaling in different machines running frontend through server pools (auto scaling, etc)</li>
 			<li>Implementation of parallelization/concurrency/process waiting lists (workers), in frontend to increment the capacity to deliver connections to and from backend to more clients at the same time</li>
 			<li>Implementation of workers for a PWA version to work and save state even on loss of connection, retrying communication/processes as soon as connection is available</li>
 			<li>Implementation of methods and functions that have ability to recover or retry the operation that failed through API and/or CLI</li>
