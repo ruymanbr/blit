@@ -92,7 +92,7 @@
 		</ul>
 	<li>Complexity and Coverage</li>
 		<ul>
-			<li>More argument complexity in BLIT CLI.</li>
+			<li>More argument complexity in BLIT CLI (Adding flag capacity with flag package)</li>
 			<sub>(Parameters for different options)</sub>
 			<sub>Examples:</sub>
 			<ul>			
