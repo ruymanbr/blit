@@ -72,7 +72,7 @@ func TestGetPath(t *testing.T) {
 	}
 }
 
-// GetPathInfo tests function GetPathInfo from package blit_cli
+// TestGetPathInfo tests function GetPathInfo from package blit_cli
 func TestGetPathInfo(t *testing.T) {
 	var tests = []struct {
 		path string
@@ -103,17 +103,17 @@ func TestGetPathInfo(t *testing.T) {
 	}
 }
 
-// BenchGetPathInfo tests GetPathInfo performance
-func BenchmarkingGetPathInfo(b *testing.B) {
+// BenchmarkGetPathInfo tests GetPathInfo performance
+func BenchmarkGetPathInfo(b *testing.B) {
 	path := "/usr/"
 
 	for i := 0; i < b.N; i++ {
-		_, _ = GetPathInfo(path)
+		GetPathInfo(path)
 	}
 }
 
-// EncapData tests function EncapData from package blit_cli
-func TestEncapData(t *testing.T) {
+// TestGetPathInfo tests function EncapData from package blit_cli
+func TestGetPathInfo(t *testing.T) {
 	
     type Test struct {
     	files []fs.FileInfo
@@ -155,7 +155,7 @@ func TestEncapData(t *testing.T) {
     }
 }
 
-// cleanData tests function CleanData from package blit_cli
+// TestCleanData tests function CleanData from package blit_cli
 func TestCleanData(t *testing.T) {
 	var tests = []struct {
 		fullSli [][]string
@@ -190,7 +190,7 @@ func TestCleanData(t *testing.T) {
 	}	
 }
 
-// ByteToReadableSize tests function ByteToReadableSize from package blit_cli
+// TestByteToReadableSize tests function ByteToReadableSize from package blit_cli
 func TestByteToReadableSize(t *testing.T) {
 	var tests = []struct {
 		num int64
