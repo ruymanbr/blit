@@ -35,40 +35,43 @@ func init() {
 func main() {
 	if CLI_active {
 		path, _ := blit_cli.GetPath(os.Args)
-		//err := ShowFilesInShell(path)
 
-		fileInfo, err := blit_cli.GetPathInfo(path)
-		totFiles := len(fileInfo)
+		sizesSli, encap_data, err, totSize	:= HandlePath(path)	
+		totFiles 							:= len(sizesSli)
+		_, dirList 							:= blit_cli.CleanData(encap_data)
 
-		if err != nil {
-			HandleMalformedPath(path)
-		}
+		blit_cli.FileSizeSort(sizesSli, 1)
 
-		sizesSli, encap_data, err, totSize := blit_cli.EncapData(fileInfo, path)
+		sortedSli							:= blit_cli.FastSwitchSli(encap_data, sizesSli, 0)
 
-		_, dirList 		:= CleanData(encap_data)
-		FileSizeSort(sizesSli, 1)
-		sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
-		RenderData(dirList, sortedSli, totSize, totFiles)
-	} else {
-		
+		blit_cli.RenderData(dirList, sortedSli, totSize, totFiles)
+
+	} else {		
 		Openbrowser("http://localhost:8080")
 		blit_backend.Start()
 	}
 
 }
 
-// ShowFilesInShell passes a given path string to a handler function in CLI package for blit
+// HandlePath handles a given path calling functions in package blit_cli
 // 
 // Takes 1 argument:
 // 1: path string	 		(what URI to open in browser)
 //
-// Returns: 
-//	<No Return>
-func ShowFilesInShell(path string) error {	
-	err := blit_cli.Handler(path)
-	
-	return err
+// Returns:
+//	1: [][]int 			(File sizes matrix)
+//	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
+//	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+//	4: int64 			(Sum of total file sizes in given path)
+func HandlePath(path string) ([][]int, [][]string, error, int64) {	
+	//err := blit_cli.Handler(path)
+	fileInfo, err := blit_cli.GetPathInfo(path)	
+
+	if err != nil {
+		HandleMalformedPath(path)
+	}
+
+	return blit_cli.EncapData(fileInfo, path)
 }
 
 // HandleMalformedPath starts a cascade function call to try to recover from a malformed path (missing slashes)
@@ -86,7 +89,7 @@ func HandleMalformedPath(oldPath string) {
 	}
 }
 
-// TrySlashBefore include 1 slash string before old path string and retry ShowFilesInShell()
+// TrySlashBefore include 1 slash string before old path string and retry HandlePath()
 // 
 // Takes 1 argument:
 // 1: oldPath string	 	(what URI to open in browser)
@@ -95,7 +98,7 @@ func HandleMalformedPath(oldPath string) {
 //	1: error 				(In case it can't open the modified path string)
 func TrySlashBefore(oldPath string) error {
 	newPath := "/" + oldPath
-	err := ShowFilesInShell(newPath)
+	err := HandlePath(newPath)
 	if err != nil {
 		return TrySlashEnd(oldPath)
 	}
@@ -103,7 +106,7 @@ func TrySlashBefore(oldPath string) error {
 	return err
 }
 
-// TrySlashEnd include 1 slash string after old path string and retry ShowFilesInShell()
+// TrySlashEnd include 1 slash string after old path string and retry HandlePath()
 // 
 // Takes 1 argument:
 // 1: oldPath string	 	(what URI to open in browser)
@@ -112,7 +115,7 @@ func TrySlashBefore(oldPath string) error {
 //	1: error 				(In case it can't open the modified path string)
 func TrySlashEnd(oldPath string) error {
 	newPath := oldPath + "/"
-	err := ShowFilesInShell(newPath)
+	err := HandlePath(newPath)
 	if err != nil {
 		return TryBothSlashes(oldPath)
 	}
@@ -120,7 +123,7 @@ func TrySlashEnd(oldPath string) error {
 	return err
 }
 
-// TryBothSlashes include slashes string before and after and retry ShowFilesInShell()
+// TryBothSlashes include slashes string before and after and retry HandlePath()
 // 
 // Takes 1 argument:
 // 1: oldPath string	 	(what URI to open in browser)
@@ -129,7 +132,7 @@ func TrySlashEnd(oldPath string) error {
 //	1: error 				(In case it can't open the modified path string)
 func TryBothSlashes(oldPath string) error {
 	newPath := "/" + oldPath + "/"
-	err := ShowFilesInShell(newPath)
+	err := HandlePath(newPath)
 
 	return err
 }
