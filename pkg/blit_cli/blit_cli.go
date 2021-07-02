@@ -99,14 +99,14 @@ func GetPathInfo(root string) ([][]int, [][]string, error, int64, int) {
 
 	f, err := os.Open(root)
 	if err != nil {
-		panic(err)
+		return _, _, err, _, _
 	}
 	fileInfo, err := f.Readdir(-1)
 	defer func() {
 		f.Close()
 	}()
 	if err != nil {
-		panic(err)
+		return _, _, err, _, _
 	}
 	//if (cli_ON) {
 		return EncapData(fileInfo, root)
