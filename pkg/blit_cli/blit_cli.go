@@ -43,7 +43,7 @@ func (p *PathError) Error() string {
 // Returns: 
 //	1: error 			(if path is not a valid or existant folder in system)
 func Handler(path string) error {
-    fmt.Println("Path: ", path)
+    fmt.Println("Trying path: ", path)
 	
 	
 	fileInfo, err := GetPathInfo(path)
