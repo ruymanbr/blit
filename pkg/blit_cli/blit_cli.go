@@ -62,7 +62,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var emptyPath []fs.FileInfo
 	f, err := os.Open(root)
 	if err != nil {
-		//fmt.Println("Error after os.Open: ", err)
+		fmt.Println("Error after os.Open: ", err)
 		return emptyPath, err
 	}
 	fileInfo, err := f.Readdir(-1)
@@ -70,7 +70,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 		f.Close()
 	}()
 	if err != nil {
-		//fmt.Println("Error after f.Readdir: ", err)
+		fmt.Println("Error after f.Readdir: ", err)
 		return emptyPath, err
 	}	
 	return fileInfo, nil	
