@@ -32,7 +32,7 @@ type PathError struct {
 }
 
 func (p *PathError) Error() string {
-	fmt.Srintf("Path %v ...is incorrect", p.path)
+	return fmt.Sprintf("Path %v ...is incorrect", p.path)
 }
 
 func Handler(path string) error {
