@@ -50,7 +50,7 @@ func Handler(path string) error {
 	if err != nil {
 		return err
 	}
-	sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, root)
+	sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, path)
     if err == nil {
     	return err    	
 	}
@@ -98,17 +98,17 @@ func GetPath(args []string) (string, bool) {
 //	5: int 				(total number of files in given path)
 //func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int) {
 func GetPathInfo(root string) ([]fs.FileInfo, error) {
-
+	var empty []fs.FileInfo
 	f, err := os.Open(root)
 	if err != nil {
-		return []fs.FileInfo, err
+		return empty, err
 	}
 	fileInfo, err := f.Readdir(-1)
 	defer func() {
 		f.Close()
 	}()
 	if err != nil {
-		return []fs.FileInfo, err
+		return empty, err
 	}
 	//if (cli_ON) {
 		return fileInfo, nil
