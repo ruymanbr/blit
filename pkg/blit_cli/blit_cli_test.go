@@ -112,8 +112,8 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	}
 }
 
-// TestGetPathInfo tests function EncapData from package blit_cli
-func TestGetPathInfo(t *testing.T) {
+// TestEncapData tests function EncapData from package blit_cli
+func TestEncapData(t *testing.T) {
 	
     type Test struct {
     	files []fs.FileInfo
