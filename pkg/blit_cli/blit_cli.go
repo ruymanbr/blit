@@ -100,7 +100,7 @@ func GetPathInfo(root string) ([][]int, [][]string, error, int64, int) {
 	fileInfo, err := f.Readdir(-1)
 	defer func() {
 		f.Close()
-	}
+	}()
 	if err != nil {
 		panic(root, err)
 	}
