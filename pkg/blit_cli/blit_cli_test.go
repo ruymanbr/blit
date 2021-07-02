@@ -26,8 +26,7 @@ var Passed 			= "\033[32m PASSED: \033[97m"
 var TotalPassed 	= 0
 var TotalNotPassed 	= 0
 
-
-// TestGetPath_tests GetPath from package main in blit.go
+// TestGetPath_tests GetPath from package blit_cli
 func TestGetPath(t *testing.T) {
 	var tests = []struct {
 		args []string
@@ -73,29 +72,34 @@ func TestGetPath(t *testing.T) {
 	}
 }
 
-// GetPathInfo tests function GetPathInfo from package main in blit.go
+// GetPathInfo tests function GetPathInfo from package blit_cli
 func TestGetPathInfo(t *testing.T) {
 	var tests = []struct {
 		path string
-		cli_ON bool
 	}{
-		{"/home/", true},
-		{"/usr/local/", true},
-		{"/etc/", true},		
+		{"/home/"},
+		{"/usr/"},
+		{"/usr/local/"},
+		{"/etc/"},
+		{"/var/"},
+		{"/usr/"},
+		{"/lib/"},
 	}
 
 	for i, test := range tests {
-		_, _, err, _, gotTotFiles := GetPathInfo(test.path, test.cli_ON)
+		fileInfo, err := GetPathInfo(test.path)
 
 		if err != nil {
 			t.Errorf("%v Test %v - Error in GetPathInfo call: %v\n", NotPassed, i+1, err)
 			TotalNotPassed += 1
-		} 
-
-		if gotTotFiles > 0  {
-			fmt.Printf("%v Test %v - GOT: %v files // WANT: > 0 files in %v\n", Passed, i+1, gotTotFiles, test.path)
-			TotalPassed += 1
+		} else {
+			totFiles := len(fileInfo)
+			if totFiles > 0  {
+				fmt.Printf("%v Test %v - GOT: %v files // WANT: > 0 files in %v\n", Passed, i+1, totFiles, test.path)
+				TotalPassed += 1
+			}	
 		}
+		
 	}
 }
 
@@ -104,11 +108,11 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	path := "/usr/"
 
 	for i := 0; i < b.N; i++ {
-		GetPathInfo(path, true)
+		GetPathInfo(path)
 	}
 }
 
-// EncapData tests function EncapData from package main in blit.go
+// EncapData tests function EncapData from package blit_cli
 func TestEncapData(t *testing.T) {
 	
     type Test struct {
@@ -151,7 +155,7 @@ func TestEncapData(t *testing.T) {
     }
 }
 
-// cleanData tests function CleanData from package main in blit.go
+// cleanData tests function CleanData from package blit_cli
 func TestCleanData(t *testing.T) {
 	var tests = []struct {
 		fullSli [][]string
@@ -186,7 +190,7 @@ func TestCleanData(t *testing.T) {
 	}	
 }
 
-// ByteToReadableSize tests function ByteToReadableSize from package main in blit.go
+// ByteToReadableSize tests function ByteToReadableSize from package blit_cli
 func TestByteToReadableSize(t *testing.T) {
 	var tests = []struct {
 		num int64
@@ -215,7 +219,7 @@ func TestByteToReadableSize(t *testing.T) {
 }
 
 
-// TestFileSizeSort tests function FileSizeSort from package main in blit.go
+// TestFileSizeSort tests function FileSizeSort from package blit_cli
 func TestFileSizeSort(t *testing.T)  {
 	var tests = []struct{
 		sizeSli [][]int
@@ -253,7 +257,7 @@ func TestFileSizeSort(t *testing.T)  {
 
 }
 
-// TestSwap tests function Test from package main in blit.go
+// TestSwap tests function Test from package blit_cli
 func TestSwap(t *testing.T) {
 	var tests = []struct{
 		sizeSli [][]int

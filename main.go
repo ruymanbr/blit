@@ -35,10 +35,21 @@ func init() {
 func main() {
 	if CLI_active {
 		path, _ := blit_cli.GetPath(os.Args)
-		err := ShowFilesInShell(path)
+		//err := ShowFilesInShell(path)
+
+		fileInfo, err := blit_cli.GetPathInfo(path)
+		totFiles := len(fileInfo)
+
 		if err != nil {
 			HandleMalformedPath(path)
 		}
+
+		sizesSli, encap_data, err, totSize := blit_cli.EncapData(fileInfo, path)
+
+		_, dirList 		:= CleanData(encap_data)
+		FileSizeSort(sizesSli, 1)
+		sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
+		RenderData(dirList, sortedSli, totSize, totFiles)
 	} else {
 		
 		Openbrowser("http://localhost:8080")

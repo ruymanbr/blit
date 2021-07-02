@@ -43,15 +43,14 @@ func (p *PathError) Error() string {
 // Returns: 
 //	1: error 			(if path is not a valid or existant folder in system)
 func Handler(path string) error {
-    fmt.Println("Trying path: ", path)
-	
+    fmt.Println("Trying path: ", path)	
 	
 	fileInfo, err := GetPathInfo(path)
 
     if err != nil {
     	return err
 	}
-	sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, path)	
+	//sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, path)
 	if err != nil {
     	return err
 	}
@@ -106,10 +105,9 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	if err != nil {
 		return emptyPath, err
 	}
-	//if (cli_ON) {
-		return fileInfo, nil
-	//} 
-	//return EncapData(fileInfo, "")
+	
+	return fileInfo, nil
+	
 }
 
 // EncapData extracts data from a []fs.FileInfo dataset in a given path (string). 
@@ -122,12 +120,11 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 //	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 //	4: int64 			(Sum of total file sizes in given path)
-//	5: int (			total number of files in given path)
-func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64, int) {
+func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64) {
     var files [][]string	// data set of all files scanned
     var sizes [][]int 		// data set of [][original_order, size] of [][]ints
     var totSize int64 		// sum of file sizes
-    var totFiles int = 0 	
+    
     var isDir string		// y/n to detect if it's a directory, for latter format
 
 
@@ -137,7 +134,7 @@ func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error,
 
 		if err != nil {
 			fmt.Println("err: ", err)
-			return sizes, files, err, 0, 0
+			return sizes, files, err, 0
 		}
 
 		if stats.IsDir() {
@@ -150,7 +147,6 @@ func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error,
 	 
 		size := file.Size()
 		totSize += size
-		totFiles += 1
 		
 		sizeN := int(size)
 		fileLine	:= []string{isDir, lastM, fName, ByteToReadableSize(size)}
@@ -162,7 +158,7 @@ func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error,
 		
 	}
 
-	return sizes, files, nil, totSize, totFiles
+	return sizes, files, nil, totSize
 }
 
 // CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
