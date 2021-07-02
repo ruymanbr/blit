@@ -99,12 +99,20 @@ func TestGetPathInfo(t *testing.T) {
 	}
 }
 
+// BenchGetPathInfo tests GetPathInfo performance
+func BenchmarkGetPathInfo(b *testing.B) {
+	path := "/usr/"
+
+	for i := 0; i < b.N; i++ {
+		GetPathInfo(path, true)
+	}
+}
+
 // EncapData tests function EncapData from package main in blit.go
 func TestEncapData(t *testing.T) {
 	
     type Test struct {
     	files []fs.FileInfo
-    	totSize int
     	path string
     }
 
@@ -119,6 +127,9 @@ func TestEncapData(t *testing.T) {
 			panic(err)
 		}
 		fileInfo, err := f.Readdir(-1)
+		if err != nil {
+			panic(err)
+		}
 		f.Close()
 		test := new(Test)
 		test.files 	= fileInfo

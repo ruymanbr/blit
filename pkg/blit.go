@@ -23,7 +23,7 @@ import (
 	"os"
     "strconv"
     "github.com/olekukonko/tablewriter"
-    "io/fs"
+    "io/fs"    
 )
 
 func main() {
@@ -49,6 +49,11 @@ func main() {
 	
 }
 
+func handler(writter http.ResponseWriter, request *http.Request) {
+	writter.WriteHeader(200)
+	writter.Write([]byte("Welcome to Blit: Let's list some folders!"))
+}
+
 // GetPath extracts path from CLI argument, if not given it returns current directory path
 // 
 // Takes 1 argument:
@@ -65,12 +70,10 @@ func GetPath(args []string) (string, bool) {
 		switch len(args) {
 			case 2: 				
 				return args[1], true
-			default: 
-				return curr_wd, false
+
 		}	
 	}
-	return curr_wd, false
-	
+	return curr_wd, false	
 }
 
 // GetPathInfo extracts a info from files in a given dir path and returns in cascade from EncapData() as -> Matrix [][]int for Sizes; [][]string for File Data as [n_files]{isDir, lastM, fName, size_HR_Format}; error(err); total file_size(int64); total files(int)
@@ -98,9 +101,7 @@ func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, i
 	}
 	if (cli_ON) {
 		return EncapData(fileInfo, root)
-	} else {
-		return EncapData(fileInfo, "")
-	}
+	} 
 	return EncapData(fileInfo, "")
 }
 
@@ -242,7 +243,7 @@ func FileSizeSort(sli [][]int, sizePos int)  {
 	var sorted bool = false
 	var i, sorted_i int
 	
-	for sorted == false {		
+	for !sorted {		
 		sorted_i = 0
 		for i = 0; i < (len(sli) - 1); i++ {
 			if sli[i][sizePos] < sli[i+1][sizePos] {

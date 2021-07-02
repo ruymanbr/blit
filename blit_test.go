@@ -11,7 +11,7 @@
  *
  */
 
-package main
+package blit
 
 import (
 	"testing"

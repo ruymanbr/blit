@@ -16,14 +16,14 @@
  *
  */
 
-package main
+package blit
 
 import (
 	"fmt"
 	"os"
     "strconv"
     "github.com/olekukonko/tablewriter"
-    "io/fs"
+    "io/fs"    
 )
 
 func main() {
@@ -47,6 +47,11 @@ func main() {
 		RenderData(dirList, sortedSli, totSize, totFiles)
 	}
 	
+}
+
+func handler(writter http.ResponseWriter, request *http.Request) {
+	writter.WriteHeader(200)
+	writter.Write([]byte("Welcome to Blit: Let's list some folders!"))
 }
 
 // GetPath extracts path from CLI argument, if not given it returns current directory path
