@@ -138,11 +138,11 @@ func TestEncapSizes(t *testing.T) {
 	}
 
 	for i, sizeProcessed := range sizesExpected {
-		if sizes[i][1] != sizesExpected[1] {
+		if sizes[i][1] != sizeProcessed[1] {
 			t.Errorf("%v Test %v - Not the expected value in slice position %v\n", NotPassed, i+1, i)
 			TotalNotPassed += 1
 		} else {
-			fmt.Printf("%v Test %v - GOT: %v // WANT: %v\n", Passed, i+1, sizes[i][1], sizesExpected[1])
+			fmt.Printf("%v Test %v - GOT: %v // WANT: %v\n", Passed, i+1, sizes[i][1], sizeProcessed[1])
 			TotalPassed += 1
 		}
 	}
