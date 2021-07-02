@@ -46,17 +46,19 @@ func Handler(path string) error {
 
 	//}	
 	
-	sizesSli, encap_data, err, totSize, totFiles := GetPathInfo(path)
-
-    if err == nil {
-    	_, dirList 		:= CleanData(encap_data)
-		FileSizeSort(sizesSli, 1)
-		sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
-		RenderData(dirList, sortedSli, totSize, totFiles)
-    	return nil	
+	fileInfo, err := GetPathInfo(path)
+	if err != nil {
+		return err
 	}
-	return err
-	
+	sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, root)
+    if err == nil {
+    	return err    	
+	}
+	_, dirList 		:= CleanData(encap_data)
+	FileSizeSort(sizesSli, 1)
+	sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
+	RenderData(dirList, sortedSli, totSize, totFiles)
+	return nil	
 }
 
 // GetPath extracts path from CLI argument, if not given it returns current directory path
@@ -95,21 +97,21 @@ func GetPath(args []string) (string, bool) {
 //	4: int64 			(Sum of total file sizes in given path)
 //	5: int 				(total number of files in given path)
 //func GetPathInfo(root string, cli_ON bool) ([][]int, [][]string, error, int64, int) {
-func GetPathInfo(root string) ([][]int, [][]string, error, int64, int) {
+func GetPathInfo(root string) ([]fs.FileInfo, error) {
 
 	f, err := os.Open(root)
 	if err != nil {
-		return _, _, err, _, _
+		return []fs.FileInfo, err
 	}
 	fileInfo, err := f.Readdir(-1)
 	defer func() {
 		f.Close()
 	}()
 	if err != nil {
-		return _, _, err, _, _
+		return []fs.FileInfo, err
 	}
 	//if (cli_ON) {
-		return EncapData(fileInfo, root)
+		return fileInfo, nil
 	//} 
 	//return EncapData(fileInfo, "")
 }
