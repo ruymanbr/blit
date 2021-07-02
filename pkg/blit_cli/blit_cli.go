@@ -70,7 +70,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var emptyPath []fs.FileInfo
 	f, err := os.Open(root)
 	if err != nil {
-		fmt.Println("Error after os.Open ", err)
+		fmt.Println("Error after os.Open: ", err)
 		return emptyPath, err
 	}
 	fileInfo, err := f.Readdir(-1)
@@ -78,7 +78,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 		f.Close()
 	}()
 	if err != nil {
-		fmt.Println("Error after f.Readdir ", err)
+		fmt.Println("Error after f.Readdir: ", err)
 		return emptyPath, err
 	}
 	
@@ -94,7 +94,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 // Returns:
 //	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
-//	4: int64 			(Sum of total file sizes in given path)
+//	3: int64 			(Sum of total file sizes in given path)
 func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var files [][]string	// data set of all files scanned
     var totSize int64 		// sum of file sizes
@@ -102,14 +102,10 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 
 	for _, file := range fileInfo {
 		fName := file.Name()
-		fmt.Println("File name: ", fName)
-		fmt.Println("Path: ", path)
-		fmt.Println("Path + file name: ", path + fName)
 		stats, err := os.Stat(path + fName)
-		//stats, err := os.Stat(fName)
 
 		if err != nil {
-			fmt.Println("os.Stat failed. err: ", err)
+			fmt.Println("os.Stat failed. Err: ", err)
 			return files, err, 0
 		}
 
