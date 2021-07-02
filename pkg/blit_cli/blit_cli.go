@@ -107,9 +107,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	defer func() {
 		f.Close()
 	}()
-	if err != nil {
-		return empty, err
-	}
+	
 	//if (cli_ON) {
 		return fileInfo, nil
 	//} 
