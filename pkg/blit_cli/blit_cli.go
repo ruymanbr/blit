@@ -26,7 +26,16 @@ import (
     "io/fs"    
 )
 
-func Handler(path string) {
+type PathError struct {
+	err error
+	path string
+}
+
+func (p *PathError) Error() string {
+	fmt.Srintf("Path %v ...is incorrect", p.path)
+}
+
+func Handler(path string) error {
 	var err error
     //path, cli_on := GetPath(os.Args)
     
@@ -44,14 +53,14 @@ func Handler(path string) {
     }()
 	sizesSli, encap_data, err, totSize, totFiles := GetPathInfo(path)
 
-    if err != nil {
-    	panic(err)
-	} else {
-		_, dirList 		:= CleanData(encap_data)
+    if err == nil {
+    	_, dirList 		:= CleanData(encap_data)
 		FileSizeSort(sizesSli, 1)
 		sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
 		RenderData(dirList, sortedSli, totSize, totFiles)
+    	return nil	
 	}
+	return err
 	
 }
 
