@@ -49,11 +49,6 @@ func main() {
 	
 }
 
-func handler(writter http.ResponseWriter, request *http.Request) {
-	writter.WriteHeader(200)
-	writter.Write([]byte("Welcome to Blit: Let's list some folders!"))
-}
-
 // GetPath extracts path from CLI argument, if not given it returns current directory path
 // 
 // Takes 1 argument:
