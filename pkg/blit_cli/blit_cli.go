@@ -45,12 +45,7 @@ func Handler(path string) error {
 	//	fmt.Println("Current folder: ", path)
 
 	//}	
-	defer func() {
-        if recPath, recGetPathInfo := recover(); recGetPathInfo != nil {
-            fmt.Println("Path is incorrect: ", recGetPathInfo)
-            fmt.Println("Checking format of path: ", recPath)
-        }
-    }()
+	
 	sizesSli, encap_data, err, totSize, totFiles := GetPathInfo(path)
 
     if err == nil {
@@ -104,14 +99,14 @@ func GetPathInfo(root string) ([][]int, [][]string, error, int64, int) {
 
 	f, err := os.Open(root)
 	if err != nil {
-		panic(root, err)
+		panic(err)
 	}
 	fileInfo, err := f.Readdir(-1)
 	defer func() {
 		f.Close()
 	}()
 	if err != nil {
-		panic(root, err)
+		panic(err)
 	}
 	//if (cli_ON) {
 		return EncapData(fileInfo, root)
