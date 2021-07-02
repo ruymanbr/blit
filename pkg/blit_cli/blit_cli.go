@@ -98,7 +98,7 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var totSize int64 		// sum of file sizes
     var isDir string		// y/n to detect if it's a directory, for latter format
 
-	for i, file := range fileInfo {
+	for _, file := range fileInfo {
 		fName := file.Name()
 		stats, err := os.Stat(path + fName)
 
