@@ -103,7 +103,8 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 	for _, file := range fileInfo {
 		fName := file.Name()
 		fmt.Println("File name: ", fName)
-		//stats, err := os.Stat(path + fName)
+		fmt.Println("Path + file name: ", path + fName)
+		stats, err := os.Stat(path + fName)
 		stats, err := os.Stat(fName)
 
 		if err != nil {
