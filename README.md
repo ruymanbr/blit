@@ -92,16 +92,21 @@
 <p>You can execute the demonstration in the next section</p>
 <br />
 <h3>Recommendations for backend</h3>
-<ul><li>Stability improvements</li>
+<ul><li>Stability and performance improvements</li>
 		<ul>
-			<li>Implementation of methods that have ability to recover or retry the operation that failed</li>
+			<li>Implementation of goroutines for parallel/concurrent executions of backend instances (More requests whenever more threads can run concurrently)</li>
+			<li>Separation of blit_frontend program to run independently of backend server</li>
+			<li>Implementation of parallelization/concurrency/process waiting lists (workers), in frontend to increment the capacity to deliver connections to and from backend to more clients at the same time</li>
+			<li>Implementation of workers for a PWA version to work and save state even on loss of connection, retrying communication/processes as soon as connection is available</li>
+			<li>Implementation of methods and functions that have ability to recover or retry the operation that failed through API and/or CLI</li>
 			<li>Further testing should be implemented: FastSwitchSli function have no test implemented yet</li>
-			<li>Further Benchmarking tests should be implemented. This should be done to proper evaluate performance. Specially for scaling up and remote using this program. Only the slower function (at first glance) has been benchmarked (GetPathInfo, which calls EncapData)</li>
+			<li>Further Benchmarking tests should be implemented. This should be done to proper evaluate performance. Specially for scaling up and remote using this program.</li>
 			<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
 			<li>Some more error handling in code could be added, specially with the use of Recover for increased stability</li>
 			<sub>It's fairly managed, but some user entering parameters in some cases maight develop in error during runtime. Hence the need for more testing</sub>
 			<li>Human error workarounds</li>
 			<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
+			<li>Double check and review that code closes every open file or path to improve memory management</li>
 		</ul>
 	<li>Complexity and Coverage</li>
 		<ul>
