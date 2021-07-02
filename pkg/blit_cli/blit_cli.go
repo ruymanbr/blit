@@ -84,31 +84,27 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	
 }
 
-// EncapData extracts data from a []fs.FileInfo dataset in a given path (string). 
+// EncapData extracts data from a []fs.FileInfo dataset in a given path
 //
 // 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
-// 2: root string (Path where files are located)
+// 2: path string (Path where files are located)
 //
 // Returns:
-//	1: [][]int 			(File sizes matrix)
 //	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 //	4: int64 			(Sum of total file sizes in given path)
-func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error, int64) {
+func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var files [][]string	// data set of all files scanned
-    var sizes [][]int 		// data set of [][original_order, size] of [][]ints
     var totSize int64 		// sum of file sizes
-    
     var isDir string		// y/n to detect if it's a directory, for latter format
-
 
 	for i, file := range fileInfo {
 		fName := file.Name()
-		stats, err := os.Stat(root + fName)
+		stats, err := os.Stat(path + fName)
 
 		if err != nil {
 			fmt.Println("err: ", err)
-			return sizes, files, err, 0
+			return files, err, 0
 		}
 
 		if stats.IsDir() {
@@ -116,23 +112,34 @@ func EncapData(fileInfo []fs.FileInfo, root string) ([][]int, [][]string, error,
 		} else {
 			isDir = "n"
 		}
-
 		lastM := stats.ModTime().Format("2006-01-02 15:04:05");
-	 
+
 		size := file.Size()
 		totSize += size
-		
-		sizeN := int(size)
+
 		fileLine	:= []string{isDir, lastM, fName, ByteToReadableSize(size)}
 		files 		= append(files, fileLine)
 		
+	}
+	return files, nil, totSize
+}
+
+// EncapSizes returns a [][]int slice with data from a []fs.FileInfo dataset in a given path
+//
+// 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
+//
+// Returns:
+//	1: [][]int 			(File sizes matrix)
+func EncapSizes(fileInfo []fs.FileInfo) ([][]int) {
+	var sizes [][]int
+
+	for i, file := range fileInfo {
+		size := file.Size()		
+		sizeN := int(size)			
 		sizeLine	:= []int{i, sizeN}
 		sizes		= append(sizes, sizeLine)
-		
-		
 	}
-
-	return sizes, files, nil, totSize
+	return sizes
 }
 
 // CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position

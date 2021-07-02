@@ -20,6 +20,7 @@ import (
 	"os/exec"
 	"runtime"
 	"log"
+	"io/fs"
 )
 
 var CLI_active bool
@@ -36,13 +37,20 @@ func main() {
 	if CLI_active {
 		path, _ := blit_cli.GetPath(os.Args)
 
-		sizesSli, encap_data, err, totSize	:= HandlePath(path)	
-		totFiles 							:= len(sizesSli)
-		_, dirList 							:= blit_cli.CleanData(encap_data)
+		fileInfo, err				:= HandlePath(path)
+		if err != nil {
+			log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
+		}
+		encap_data, err, totSize 	:= blit_cli.EncapData(fileInfo, path)
+		if err != nil {
+			log.Fatalf("Path %v is incorrect. Error: %v\n", path, err)
+		}
+		sizesSli 					:= blit_cli.EncapSizes(fileInfo)
+		totFiles 					:= len(sizesSli)
+		_, dirList 					:= blit_cli.CleanData(encap_data)
 
 		blit_cli.FileSizeSort(sizesSli, 1)
-
-		sortedSli							:= blit_cli.FastSwitchSli(encap_data, sizesSli, 0)
+		sortedSli					:= blit_cli.FastSwitchSli(encap_data, sizesSli, 0)
 
 		blit_cli.RenderData(dirList, sortedSli, totSize, totFiles)
 
@@ -59,83 +67,37 @@ func main() {
 // 1: path string	 		(what URI to open in browser)
 //
 // Returns:
-//	1: [][]int 			(File sizes matrix)
-//	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
+//	1: []fs.FileInfo	(Data from files listed)
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
-//	4: int64 			(Sum of total file sizes in given path)
-func HandlePath(path string) ([][]int, [][]string, error, int64) {	
-	//err := blit_cli.Handler(path)
+func HandlePath(path string) ([]fs.FileInfo, error) {
+	var fileInfo []fs.FileInfo
 	fileInfo, err := blit_cli.GetPathInfo(path)	
 
 	if err != nil {
-		HandleMalformedPath(path)
+		SlashBefore 	:= "/" + path
+		SlashAfter 		:= path + "/"
+		BothSlashes		:= "/" + path + "/"
+
+		paths = []struct{
+			newPath string
+		}{
+			SlashBefore,
+			SlashAfter,
+			BothSlashes,
+		}
+
+		for tryPath := range paths {
+			fileInfo, err := blit_cli.GetPathInfo(tryPath.newPath)
+			if err == nil {
+				break
+			}
+		}
+
+		return fileInfo, err
 	}
-
-	return blit_cli.EncapData(fileInfo, path)
+	return fileInfo, err
 }
 
-// HandleMalformedPath starts a cascade function call to try to recover from a malformed path (missing slashes)
-// 
-// Takes 1 argument:
-// 1: oldPath string	 	(what URI to open in browser)
-//
-// Returns: 
-//	<No Return>
-func HandleMalformedPath(oldPath string) {
-	err := TrySlashBefore(oldPath)
-
-	if err != nil {
-		log.Fatalln("Program interrupted. Error: ", err)
-	}
-}
-
-// TrySlashBefore include 1 slash string before old path string and retry HandlePath()
-// 
-// Takes 1 argument:
-// 1: oldPath string	 	(what URI to open in browser)
-//
-// Returns: 
-//	1: error 				(In case it can't open the modified path string)
-func TrySlashBefore(oldPath string) error {
-	newPath := "/" + oldPath
-	err := HandlePath(newPath)
-	if err != nil {
-		return TrySlashEnd(oldPath)
-	}
-
-	return err
-}
-
-// TrySlashEnd include 1 slash string after old path string and retry HandlePath()
-// 
-// Takes 1 argument:
-// 1: oldPath string	 	(what URI to open in browser)
-//
-// Returns: 
-//	1: error 				(In case it can't open the modified path string)
-func TrySlashEnd(oldPath string) error {
-	newPath := oldPath + "/"
-	err := HandlePath(newPath)
-	if err != nil {
-		return TryBothSlashes(oldPath)
-	}
-
-	return err
-}
-
-// TryBothSlashes include slashes string before and after and retry HandlePath()
-// 
-// Takes 1 argument:
-// 1: oldPath string	 	(what URI to open in browser)
-//
-// Returns: 
-//	1: error 				(In case it can't open the modified path string)
-func TryBothSlashes(oldPath string) error {
-	newPath := "/" + oldPath + "/"
-	err := HandlePath(newPath)
-
-	return err
-}
 
 // Openbrowser opens default browser in system at a given URL
 // 
