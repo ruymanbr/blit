@@ -41,11 +41,23 @@
 	<li>mkdir temp && cd temp</li>
 	<li>git clone https://github.com/ruymanbr/blit.git</li>
 	<li>cd blit</li>
-	<li>go build blit.go</li>
-	<li>go run blit.go (or ./blit)</li>
+	<li>go build -o blit</li>	
+</ul>
+<h4>CLI</h4>
+<ul>
+	<li>i.e.: go run main.go /path/to/folder/</li>
+	<sub> -- or ./blit /path/to/folder/</sub>
 </ul>
 <br />
 <p>You should see a list of files and folders from the cloned git repo in your console, ordered by size (descending size)</p>
+<br />
+<h4>Frontend from CLI</h4>
+<ul>
+	<li>go run main.go</li>
+	<sub> -- or ./blit</sub>
+</ul>	
+<br />
+<p>You should see how your default browser (only Linux) is opened and the Frontend should be visible to operate on.</p>
 <br />
 <h2>2-Getting Started</h2>
 <h3>Testing the package</h3>
@@ -62,8 +74,8 @@
 <p>Inside BLIT root directory run the following commands:</p>
 <ol>
 	<li>go get golang.org/x/tools/cmd/godoc</li>
-	<li>cd pkg</li>
-	<li>go doc -all blit.go</li>
+	<li>cd pkg/blit_cli</li>
+	<li>go doc -all blit_cli.go</li>
 	<sub>Displays in console</sub>
 </ol>
 <br />
@@ -75,7 +87,7 @@
 <br />
 <h2>3-Production Readiness</h2>
 <h3>Discussion</h3>
-<p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app from Redux)</p>
+<p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app frontend)</p>
 <br />
 <p>You can execute the demonstration in the next section</p>
 <br />
@@ -88,7 +100,7 @@
 			<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
 			<li>Some more error handling in code could be added, specially with the use of Recover for increased stability</li>
 			<sub>It's fairly managed, but some user entering parameters in some cases maight develop in error during runtime. Hence the need for more testing</sub>
-			<li>User error workarounds</li>
+			<li>Human error workarounds</li>
 			<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
 		</ul>
 	<li>Complexity and Coverage</li>
@@ -117,8 +129,8 @@
 		</ul>
 	<li>Simplification of functions:</li>
 		<ul>
-			<li>Several functions are in a beta state. E.g.: Too many parameters returned.</li>
-			<li>Code could be fragmented even more to specialize some functions to make this more modular and reusable. Although it's fairly optimized</li>
+			<li>EncapData() function from blit_cli package is too large. E.g.: Too many parameters returned.</li>
+			<li>Code could be fragmented even more to specialize it to make this more modular and reusable. Although the rest of the code it's fairly optimized</li>
 			<li>Modularization</li>
 			<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately. That would lead to a better integration with other programs (API calls, etc)</sub>
 		</ul>
@@ -141,6 +153,11 @@
 	<ul>
 		<li>i.e: Handling calls when system where program is installed but user calling (API) isn't allowed to see folder content</li>
 		<sub>Better encapsulation and isolation of data</sub>
+		<li>Implementation of Secrets (pub key, priv key, ...) to exchange information between frontend and backend. Encryption, etc</li>
+		<li>Database implementation for backend server</li>
+		<ul>
+			<li>Some packages are in the backend to use SQL for checking and serving data from the backend if necessary (i.e: User auth, checking credentials, etc)</li>
+		</ul>
 	</ul>
 </ul>
 <h2>4-Frontend demonstration</h2>
