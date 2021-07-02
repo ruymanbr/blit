@@ -104,7 +104,7 @@ func TestGetPathInfo(t *testing.T) {
 }
 
 // BenchGetPathInfo tests GetPathInfo performance
-func BenchmarkGetPathInfo(b *testing.B) {
+func BenchmarkingGetPathInfo(b *testing.B) {
 	path := "/usr/"
 
 	for i := 0; i < b.N; i++ {
