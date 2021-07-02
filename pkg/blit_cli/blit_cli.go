@@ -35,32 +35,6 @@ func (p *PathError) Error() string {
 	return fmt.Sprintf("Path %v ...is incorrect", p.path)
 }
 
-// Handler calls blit_cli functions to process request for a given path.
-// 
-// Takes 1 argument:
-// 1: path []string 	(path to handle)
-//
-// Returns: 
-//	1: error 			(if path is not a valid or existant folder in system)
-func Handler(path string) error {
-    fmt.Println("Trying path: ", path)	
-	
-	fileInfo, err := GetPathInfo(path)
-
-    if err != nil {
-    	return err
-	}
-	//sizesSli, encap_data, err, totSize, totFiles := EncapData(fileInfo, path)
-	if err != nil {
-    	return err
-	}
-	_, dirList 		:= CleanData(encap_data)
-	FileSizeSort(sizesSli, 1)
-	sortedSli		:= FastSwitchSli(encap_data, sizesSli, 0)
-	RenderData(dirList, sortedSli, totSize, totFiles)
-	return nil	
-}
-
 // GetPath extracts path from CLI argument, if not given it returns current directory path
 // 
 // Takes 1 argument:
