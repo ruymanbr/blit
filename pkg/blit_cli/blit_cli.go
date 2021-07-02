@@ -6,13 +6,7 @@
  *
  * Summary of File:
  *
- *  This program lists the folders and files in a source folder. The list is ordered by size, 
- *	and displays size and last modification date of each element. A count of the files and the 
- *	total size is also provided.
- *  
- *	It comes with a CLI to choose the folder and output the result
- * 
- *	It runs on a unix system (i.e. ubuntu)
+ *  This package include functions to operate as a CLI to list folders and files. 
  *
  */
 
@@ -51,10 +45,8 @@ func GetPath(args []string) (string, bool) {
 		switch len(args) {
 			case 2: 				
 				return args[1], true
-
 		}	
 	}
-
 	return curr_wd, false	
 }
 
@@ -70,7 +62,7 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var emptyPath []fs.FileInfo
 	f, err := os.Open(root)
 	if err != nil {
-		fmt.Println("Error after os.Open: ", err)
+		//fmt.Println("Error after os.Open: ", err)
 		return emptyPath, err
 	}
 	fileInfo, err := f.Readdir(-1)
@@ -78,12 +70,10 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 		f.Close()
 	}()
 	if err != nil {
-		fmt.Println("Error after f.Readdir: ", err)
+		//fmt.Println("Error after f.Readdir: ", err)
 		return emptyPath, err
-	}
-	
-	return fileInfo, nil
-	
+	}	
+	return fileInfo, nil	
 }
 
 // EncapData extracts data from a []fs.FileInfo dataset in a given path
@@ -141,7 +131,6 @@ func EncapSizes(fileInfo []fs.FileInfo) ([][]int) {
 		sizeLine	:= []int{i, sizeN}
 		sizes		= append(sizes, sizeLine)
 	}
-	fmt.Println("Sizes = ", sizes)
 	return sizes
 }
 
