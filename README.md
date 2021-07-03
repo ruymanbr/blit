@@ -60,12 +60,13 @@
 <p>You should see how your default browser (only Linux) is opened and the Frontend should be visible to operate on.</p>
 <br />
 <h2>2-Getting Started</h2>
-<h3>Testing the package</h3>
+<h3>Testing CLI</h3>
 
-<p>From CONSOLE, once inside BLIT directory, run the following command</p>
+<p>From CONSOLE, once inside BLIT directory, run the following commands</p>
 <ol>
-	<li>go test</li> 
-	<sub>(or 'go test blit_test.go')</sub>
+	<li>cd pkg/blit_cli</li>
+	<li>go test -bench . -v</li>
+	<sub>(or 'go test blit_cli_test.go -bench . -v')</sub>
 </ol>
 <br />
 <h3>Go documentation. GODOC</h3>
@@ -83,6 +84,7 @@
 <ol>
 	<li>export BLIT_PATH=/here/path/to/blit/</li>	
 	<li>godoc -http=:8080 -goroot=$BLIT_PATH && x-www-browser http://localhost:8080</li>
+	<sub>Remember that frontend uses also 8080. You could switch the port to avoid overstepping if you want to keep React app open and working in a different process</sub>
 </ol>
 <br />
 <h2>3-Production Readiness</h2>
