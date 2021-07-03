@@ -7,13 +7,12 @@
  * Summary of File:
  *
  *  This program interacts with blit CLI, blit backend and blit frontend to handle user CLi and API requests.
- * 	
- * 	It lists files and folders ordered by size and displays size and last modification date of each element, count of files
- *	and total size of path folder and files.
- *  
- *	It operates with CLI and also through a frontend (based on React.js)
- * 
- *	It runs on a unix system (i.e. ubuntu)
+ * 	It displays folder and files in a given path, including: Dir (y/n) - Last modified date - Name - Size.
+ *  It runs on Linux (Ubuntu, etc)
+ *	
+ *	CLI operates displaying info in console. Frontend activates when no path has been given. It then operates through a UI
+ *	to display a given path through default browser (http://localhost:8080, specifically). It can be altered to work from 
+ *	a different location in future versions.
  *
  */
 
@@ -44,7 +43,7 @@ func main() {
 	if CLI_active {
 		path, _ := blit_cli.GetPath(os.Args)
 
-		fileInfo, pathCorrect, err	:= HandlePathFormat(path)
+		fileInfo, pathCorrect, err	:= HandlePath(path)
 		if err != nil {
 			log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
 		}
@@ -69,45 +68,45 @@ func main() {
 
 }
 
-// HandlePathFormat handles a given path calling functions in package blit_cli
+// HandlePath handles a given path calling functions in package blit_cli
 // 
 // Takes 1 argument:
-// 1: path string	 		(what URI to open in browser)
+// 1: path string	 	(what system path to be listed)
 //
 // Returns:
 //	1: []fs.FileInfo	(Data from files listed)
+//	2: string			(Sanitized path. Returned from  SanitizeLastSlash() with proper slashing format)
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
-func HandlePathFormat(path string) ([]fs.FileInfo, string, error) {
+func HandlePath(path string) ([]fs.FileInfo, string, error) {
 	var fileInfo []fs.FileInfo
-	SlashBefore := "/" + path
-	SlashAfter 	:= path + "/"
-	BothSlashes	:= "/" + path + "/"
-
-	var paths = []struct{
-		newPath string
-	}{
-		{SlashBefore},
-		{SlashAfter},
-		{BothSlashes},
-	}
+	
+	//fmt.Println("Alternative paths: ", paths)
+	path = SanitizeLastSlash(path)
+	fmt.Println("Trying path: ", path)
 	
 	fileInfo, err := blit_cli.GetPathInfo(path)	
 
-	if err != nil {
-		fmt.Println("Error: ", err)
-		for _, tryPath := range paths {
-			
-			fileInfo, err = blit_cli.GetPathInfo(tryPath.newPath)
-			
-			if err == nil {
-				if tryPath.newPath[len(tryPath.newPath)-1:] != "/" {
-					tryPath.newPath += "/"
-				}			
-				return fileInfo, tryPath.newPath, nil
-			}
-		}
-	}
 	return fileInfo, path, err
+}
+
+// SanitizeLastSlash verifies that last slash is added to given path or returns it with it
+//
+// Takes 1 argument:
+//	1: path string		(what system path to be listed)
+//
+// Returns:
+//	1: string			(Sanitized path with slash at the end)
+func SanitizeLastSlash(path string) string {
+	if path[len(path)-1:] != "/" {
+		fmt.Println("Last char of path is: ", path[len(path)-1:])
+		path += "/"
+	}
+
+	if path[:1] != "/" {
+		fmt.Println("First char of path is: ", path[:1])
+		path = "/" + path
+	}
+	return path
 }
 
 
