@@ -29,8 +29,17 @@
 <h3>Requirements</h3>
 <ul>
 	<li>Ubuntu 16.04 or newer (tested in Ubuntu 16.04)</li>
-	<li>Go version 1.16 or newer <sub>(Go to: <a href="https://golang.org/doc/install">Go install</a> to learn how to install it)</sub></li>
+	<li>curl (7.58.0 is latest stable)</li>
+		<sub>To install it in UBUNTU use "apt-get install curl". For other linux systems check commands)</sub>
+	<li>Go version 1.16 or newer <sub>(Go to: <a href="https://golang.org/doc/install">Go install</a> and follow the instructions)</sub></li>
+	<li>IMPORTANT!! You should add "sudo" before the 2 instructions to unzip the file from GO INSTALL instructions</li>
+	<li>IMPORTANT!! Also remember that you should adapt the command and/or go to the folder where you downloaded GO zip/tar file</li>
+	<li>IMPORTANT!! You should add to your /home/path/.bashrc the "export ..." command for go BIN folder aswell. Else it'll be lost once your shell is closed</li>
 	<li>Git installed in your system <sub>(To see instructions on how to install Git in Ubuntu go to: <a href="https://github.com/git-guides/install-git#install-git-on-linux">Install Git on Linux</a></sub></li>
+	<li>Node.js (and npm >= 6.13.4) (that's the version it was tested on).</li>
+		<sub>This will be necessary for the FRONTEND demo app I've made in React. To install it in UBUNTU follow the next instructions<a href="https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/">How to Install Node.js and npm on Ubuntu 18.04</a></sub>
+	<li>Yarn >= 1.21.1 </li>
+		
 </ul>
 <br />
 <h3>Steps</h3>
@@ -41,24 +50,34 @@
 	<li>mkdir temp && cd temp</li>
 	<li>git clone https://github.com/ruymanbr/blit.git</li>
 	<li>cd blit</li>
-	<li>go build -o blit</li>	
+	<li>go build -o blit</li>
 </ul>
 <h4>CLI</h4>
 <ul>
 	<li>i.e.: go run main.go /path/to/folder/</li>
-	<sub> -- or ./blit /path/to/folder/</sub>
+	<sub> -- or ./bin/blit /path/to/folder/</sub>
 </ul>
+<p>You should see a list of files and folders in your console, ordered by size (descending size)</p>
 <br />
-<p>You should see a list of files and folders from the cloned git repo in your console, ordered by size (descending size)</p>
-<br />
-<h4>Frontend from CLI</h4>
-<ul>
-	<li>go run main.go</li>
-	<sub> -- or ./blit</sub>
-</ul>	
-<br />
-<p>You should see how your default browser (only Linux) is opened and the Frontend should be visible to operate on.</p>
-<br />
+<h4>Blit Client installation</h4>
+	<sub>(Development build)</sub>
+<li>cd blit_frontend</li>
+<li>Installing general NPM dependancies</li>
+<sub>It'll install all dependencies found in package-lock.json (except individuals. Next line)</sub>
+<p>from blit_frontend directory run:</p>
+	<sub>npm ci</sub>	
+<li>Installing local NPM dependancies. Run:</li>
+	<li>npm install</li>
+<li>Installing Yarn (compatible with what's installed in blit_frontend. Run these commands:</li>
+	<sub>sudo apt remove cmdtest</sub>
+	<sub>sudo apt remove yarn</sub>
+	<sub>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</sub>
+	<sub>echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list</sub>
+	<sub>sudo apt-get update</sub>
+	<sub>sudo apt-get install yarn -y</sub>
+	<sub>yarn install</sub>
+<p>To run the frontend you just need to do </p>
+
 <h2>2-Getting Started</h2>
 <h3>Testing CLI</h3>
 
@@ -86,6 +105,14 @@
 	<li>godoc -http=:8080 -goroot=$BLIT_PATH && x-www-browser http://localhost:8080</li>
 	<sub>Remember that frontend uses also 8080. You could switch the port to avoid overstepping if you want to keep React app open and working in a different process</sub>
 </ol>
+<br />
+<h3>Starting BLIT backend server</h3>
+<sub>Router Needed for API endpoints to operate</sub>
+<p>IMPORTANT! If you have Google Chrome in Ubuntu, it comes with several bugs, like EXEC opening browser but not executing command. You'll need to follow this instructions: <a href="shorturl.at/sxzA1">How to xdg/open in Ubuntu Chrome</a></p>
+<ul>
+	<li>go run main.go</li>
+	<sub> -- or ./bin/blit (if you are in BLIT root folder). There is a compiled version in BIN called "blit"</sub>
+</ul>	
 <br />
 <h2>3-Production Readiness</h2>
 <h3>Discussion</h3>
