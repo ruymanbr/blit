@@ -1,0 +1,123 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.backend-status-wrapper {
+  font-size: .65em;
+  margin-bottom: 1em;
+}
+.App-header .online {
+  color:  green;
+}
+.App-header .offline {
+  color:  red;
+}
+
+.App-form input {
+  padding: 2px;
+  min-width: 100px;
+  max-width: 200px;
+  margin: 0!important;
+}
+
+.App-form label {
+  margin-right: 10px;
+  font-size: .7em;
+}
+
+.App-response {
+  background-color: #000;
+  color: #fff;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  overflow-y: scroll;
+}
+
+.App-response {
+    /*display: contents;*/
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#files {
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#files td, #files th {
+  text-align: left;
+  padding: 10px;
+}
+
+#files .w10 {
+    width: 10%;
+}
+
+#files .w30 {
+    width: 30%;
+}
+
+#files .w45 {
+    width: 45%;
+}
+
+#files .w15 {
+    width: 15%;
+}
+
+#files thead {
+  color:yellow;
+}
+
+#files tbody {
+  color:white;
+}
+
+#files table, 
+#files th, 
+#files td {
+  border: 1px solid black;
+}
+
+#files td, 
+#files th{
+  padding: 5px;
+}
