@@ -1,4 +1,4 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->Welcome to @blit/readme. This is version 0.0.2!
+<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️-->Welcome to @blit/readme. This is version 0.0.1!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/blit_logo.png" alt="Logo" width="150" height="auto" />
@@ -78,7 +78,7 @@
 	<li>sudo apt-get install yarn -y</li>
 	<li>yarn install</li>
 </ul>
-<p>To run the frontend you just need to do </p>
+<p>Next sections will tell you how to test CLI, API and Client (foreground app)</p>
 
 <h2>2-Getting Started</h2>
 <h3>Testing CLI</h3>
@@ -89,61 +89,86 @@
 	<li>go test -bench . -v</li>
 	<sub>(or 'go test blit_cli_test.go -bench . -v')</sub>
 </ol>
+<h3>Testing Client (API + UI)</h3>
+<li>Open 2 CONSOLE shells in Linux (i.e. Ubuntu)</li>
+<li>Go to BLIT root folder in 1, and blit_frontend in 2nd. Run the following commands</li>
+<ol>
+	<li>Console 1: npm start server</li>
+	<sub>Alternatively you can enter: "go run main.go"</sub>
+	<sub> -- or ./bin/blit (if you are in BLIT root folder). There is a compiled version in BIN called "blit"</sub>
+	<sub>IMPORTANT! If you have Google Chrome in Ubuntu, it comes with several bugs, like EXEC opening browser but not executing command. You'll need to follow this instructions: <a href="shorturl.at/sxzA1">How to xdg/open in Ubuntu Chrome</a></sub>
+	<li>Console 2: yarn start</li>
+	<sub>localhost:8080 and localhost:3000 (backend and client respectivel)</sub>
+</ol>
+<p>You can check in the CONSOLE 1 the request/response from CLIENT APP. </p>
+<p>You can check http://localhost:8080/api/v1</p>
+<p>You should expect a JSON with a message component saying "PONG" which verifies it's operating</p>
+<p>Also, keep your console open and running. It'll show ROTER information like headers from responses through the endpoints. To check them from a frontend demo that is currently also available. See the next section.</p>
+<p>CLIENT FOREGROUND APP: From localhost:3000 try entering PATHS in your current OS filesystem.</p>
+<p> Happy Hacking!</p>
+
+
+
+<h2>3-Testing</h2>
+
+<p>Only unit tests have been provided for CLI. From CONSOLE, once inside BLIT directory, run the following commands</p>
+<ol>
+	<li>cd pkg/blit_cli</li>
+	<li>go test -bench . -v</li>
+	<sub>(or 'go test blit_cli_test.go -bench . -v')</sub>
+</ol>
+<p>Benchmarking tests at the end may vary depending on your computer. Lowest process has been tested around 30.000 ns/op. Fastest at 20 ns/op in one Laptop Intel i3, and desktop intel i7 with 8GB and 16GB, both SSD drives.</p>
 <br />
-<h3>Go documentation. GODOC</h3>
-<p>Documentation has been provided in this repository in DOC, PDF and godoc format. If you don't have GODOC installed in your system and want to use it to read the program documentation instead PDF/DOC fileformats, follow the next instructions.</p>
+<h2>Go documentation. GODOC</h2>
+<p>Documentation has been provided in this repository in DOC, PDF and godoc HTML format. </p>
 <br />
-<p>Inside BLIT root directory run the following commands:</p>
+<p>Alternatively, inside BLIT root directory run the following commands:</p>
 <ol>
 	<li>go get golang.org/x/tools/cmd/godoc</li>
-	<li>cd pkg/blit_cli</li>
-	<li>go doc -all blit_cli.go</li>
+	<li>cd pkg/{pkg_name}</li>
+	<li>go doc -all {pkg_name}.go</li>
 	<sub>Displays in console</sub>
 </ol>
 <br />
-<p>You can also see it in your browser using 'godoc' command as follows</p>
+<p>You can also see it in your browser using 'godoc' command (as follows)</p>
 <ol>
 	<li>export BLIT_PATH=/here/path/to/blit/</li>	
-	<li>godoc -http=:8080 -goroot=$BLIT_PATH && x-www-browser http://localhost:8080</li>
-	<sub>Remember that frontend uses also 8080. You could switch the port to avoid overstepping if you want to keep React app open and working in a different process</sub>
+	<li>godoc -http=:6060 -goroot=$BLIT_PATH && x-www-browser http://localhost:6060</li>
+	<sub>Remember that server + client use 8080 and 3000 respectively in this setup.</sub>
 </ol>
 <br />
-<h3>Starting BLIT backend server</h3>
-<sub>Router Needed for API endpoints to operate</sub>
-<p>IMPORTANT! If you have Google Chrome in Ubuntu, it comes with several bugs, like EXEC opening browser but not executing command. You'll need to follow this instructions: <a href="shorturl.at/sxzA1">How to xdg/open in Ubuntu Chrome</a></p>
-<ul>
-	<li>go run main.go</li>
-	<sub> -- or ./bin/blit (if you are in BLIT root folder). There is a compiled version in BIN called "blit"</sub>
-</ul>	
-<br />
-<h2>3-Production Readiness</h2>
+<h2>5-Production Readiness</h2>
 <h3>Discussion</h3>
 <p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app frontend)</p>
 <br />
-<p>You can execute the demonstration in the next section</p>
+<p>You can execute the demonstration in the section <a href="#2-getting-started">'Getting Started'</a></p>
 <br />
-<h3>Recommendations for backend</h3>
-<ul><li>Stability and performance improvements</li>
+<h3>Some recommendations and improvements to achieve production Ready level</h3>
+<ul>
+	<li>CI/CD</li>
+		<ul>Implementation of the API to a CI/CD friendly environment (Swagger, Swaggo?, now called OpenAPI) so it could integrate with CI/CD easily.</ul>
+		<li>More and better testing with CI/CD in mind (more on this below)</li>
+	<li>Stability and performance improvements</li>
 		<ul>
-			<li>Implementation of goroutines for parallel/concurrent executions of backend instances (More requests whenever more threads can run concurrently)</li>
-			<li>Implementation of channeling and buffering in channels to further expand stability and capacity of backend</li>
-			<li>Separation of blit_frontend program to run independently of backend server</li>
-			<li>Implementation of caching, and several good practices for Frontend to further expand our memory and cpu management,even when scaling in different machines running frontend through server pools (auto scaling, etc)</li>
-			<li>Implementation of parallelization/concurrency/process waiting lists (workers), in frontend to increment the capacity to deliver connections to and from backend to more clients at the same time</li>
-			<li>Implementation of workers for a PWA version to work and save state even on loss of connection, retrying communication/processes as soon as connection is available</li>
-			<li>Implementation of methods and functions that have ability to recover or retry the operation that failed through API and/or CLI</li>
-			<li>Further testing should be implemented: FastSwitchSli function have no test implemented yet</li>
+			<li>Implementation of channels and buffering to capacity</li>
+			<li>Implementation of caching and auto scaling for clients (In this case React app). Although it's fairly lightcode.</li>
+			<li>Implementation of parallelization/concurrency/process waiting lists (workers) for client frontend to increment the capacity to deliver connections to and from backend to more clients at the same time. Also in case huge folders need to be listed, so the request could be implemented in a different manner, paginated, etc. Workers could be goroutines that respond from different channels for every page (etc). For future versions, maybe.</li>
+			<li>Implementation of process for workers as a PWA version of the Client to operate and save state even on a connection loss, retrying communication/processes as soon as connection is available</li>
+			<li>Implementation of methods and functions that have ability to recover or retry the operation that failed through API and/or CLI: Timers, recovers, etc</li>
+			<li>Further testing should be implemented: FastSwitchSli, HandlePath, and other functions have no test implemented yet</li>
 			<li>Further Benchmarking tests should be implemented. This should be done to proper evaluate performance. Specially for scaling up and remote using this program.</li>
+			<li>API functions have no unit tests. That should be sorted</li>
 			<sub>(See <a href="https://golang.org/pkg/testing/">GO Testing</a>)</sub>
 			<li>Some more error handling in code could be added, specially with the use of Recover for increased stability</li>
-			<sub>It's fairly managed, but some user entering parameters in some cases maight develop in error during runtime. Hence the need for more testing</sub>
+			<sub>It's fairly managed, but some user entering parameters in some cases might develop in error during runtime. I discover some of recovers from ROUTER and implemented solutions, but new errors may appear. Hence the need for more testing</sub>
 			<li>Human error workarounds</li>
 			<sub>The ability to work even when some minor mistakes are entered when calling the program (via API or CLI). Detection of different quotation symbols, lower/upper casing letters in the middle, missing some symbols etc</sub>
+			<li>Slashes before and after paths was one of these. I created a solution for this, but more engineering should be performed.</li>
 			<li>Double check and review that code closes every open file or path to improve memory management</li>
 		</ul>
 	<li>Complexity and Coverage</li>
 		<ul>
-			<li>More argument complexity in BLIT CLI (Adding flag capacity with flag package)</li>
+			<li>More argument complexity for CLI and API (Adding flag capacity with flag package)</li>
 			<sub>(Parameters for different options)</sub>
 			<sub>Examples:</sub>
 			<ul>			
@@ -158,23 +183,25 @@
 				<li>blit -filter="abcd"</li>
 				<sub>To display only files with 'abcd' in their names (0000abcd.doc; 98abcd_this_too.pdf) ... and so on</sub>
 				<li></li>
-			</ul>	
-		</ul>		
-	<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+			</ul>
+			<li>Filtering capacity (Client program and flags for CLI)</li>
+			<sub>Full example could be: blit -path="/usr/local/go" -size="asc" -filter="*.go"</sub>
+		</ul>
 	<li>Documentation:</li>
 		<ul>
 			<li>Examples should be added in blit_test.go to be displayed in Blit documentation (godoc)</li>
+			<li>Modify testing to fullfill beter the CI/CD tool and maybe OpenAPI aswell, to be integrated with.</li>
 		</ul>
 	<li>Simplification of functions:</li>
 		<ul>
 			<li>EncapData() function from blit_cli package is too large. E.g.: Too many parameters returned.</li>
 			<li>Code could be fragmented even more to specialize it to make this more modular and reusable. Although the rest of the code it's fairly optimized</li>
 			<li>Modularization</li>
-			<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately. That would lead to a better integration with other programs (API calls, etc)</sub>
+			<sub>Subdividing code for different variations of parameters being passed into the program could lead to a faster minor programs that could be run separately, or to fulfill other program's needs. That would lead to a better integration and even completion of a full REST API architectural solution</sub>
 		</ul>
 	<li>Further Beautification:</li>
 		<ul>
-			<li>Colouring Folders instead of column specifying whenever a "file" is in reality a folder</li>
+			<li>Colouring Folders instead of column specifying whenever a "file" is in reality a folder for CLI</li>
 			<li>Colouring files in different tones depending on file size</li>
 			<sub>(biggest in different tones of red, lighter in different tones of green, etc)</sub>
 		</ul>
@@ -189,15 +216,14 @@
 	<sub>Code could be implemented to work with older versions. Proper error handling for this cases, and further testing should be implemented to make sure it has backwards compatibility</sub>	
 	<li>Security:</li>
 	<ul>
-		<li>i.e: Handling calls when system where program is installed but user calling (API) isn't allowed to see folder content</li>
-		<sub>Better encapsulation and isolation of data</sub>
+		<li>API tokenization and security process to handle new operations depending on tokens and "levels"</li>
 		<li>Implementation of Secrets (pub key, priv key, ...) to exchange information between frontend and backend. Encryption, etc</li>
-		<li>Database implementation for backend server</li>
+		<sub>Better encapsulation and isolation of data. Migrate from full Capitalized funcs and vars, to a more secure version, maybe a fork, to fullfill some "client" programs needs: Banks, cybersecurity?</sub>
+		<li>Database implementation for API conectivity. That could forbid or allow access to data. Private and/or internal API inside a more public API version, for example.</li>
 		<ul>
-			<li>Some packages are in the backend to use SQL for checking and serving data from the backend if necessary (i.e: User auth, checking credentials, etc)</li>
+			<li>i.e: User auth, checking credentials, etc</li>
 		</ul>
 	</ul>
 </ul>
-<h2>4-Frontend demonstration</h2>
-<sub>(React App UI + API)</sub>
+
 
