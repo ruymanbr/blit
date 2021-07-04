@@ -22,7 +22,7 @@
 	<li><a href="#1-installation">1 Installation</a>  
 	<li><a href="#2-getting-started">2. Getting Started</a></li>
 	<li><a href="#3-testing">3. Testing</a></li>
-	<li><a href="#4-production-readiness">4. Documentation</a></li>
+	<li><a href="#4-documentation">4. Documentation</a></li>
 	<li><a href="#5-production-readiness">5. Production Readiness</a></li>
 </ul>
 </div>
