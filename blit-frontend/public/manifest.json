@@ -1,6 +1,6 @@
 {
-  "short_name": "Blit App",
-  "name": "Browser Lite Frontend (blit_frontend)",
+  "short_name": "Blit",
+  "name": "Browser Lite Frontend (blit_client)",
   "icons": [
     {
       "src": "blit_favicon.ico",

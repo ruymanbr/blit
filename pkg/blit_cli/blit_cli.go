@@ -42,11 +42,11 @@ func (p *PathError) Error() string {
 // GetPath extracts path from CLI argument, if not given it returns current directory path
 // 
 // Takes 1 argument:
-// 1: args []string 	(os.Args)
+// 1: args []string 			(os.Args)
 //
 // Returns: 
-//	1: string 			(argument path or current working directory)
-//	2: bool 			(Yes for argument with path from CLI call to blit program)
+//	1: string 					(argument path or current working directory)
+//	2: bool 					(Yes for argument with path from CLI call to blit program)
 func GetPath(args []string) (string, bool) {
 	curr_wd, err := os.Getwd()
 	if err != nil {
@@ -63,11 +63,11 @@ func GetPath(args []string) (string, bool) {
 // GetPathInfo extracts info from a given path. 
 // 
 // Takes 1 argument:
-// 1: root string 		(Path to extract info from)
+// 1: root string 				(Path to extract info from)
 //
 // Returns (same as EncapData() :
-//	1: []fs.FileInfo	(slice with info from files and folders)
-//	2: error 			(not nilfor failing to open or failing reading it)
+//	1: []fs.FileInfo			(slice with info from files and folders)
+//	2: error 					(not nilfor failing to open or failing reading it)
 func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	var emptyPath []fs.FileInfo
 	f, err := os.Open(root)
@@ -88,13 +88,13 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 
 // EncapData extracts data from a []fs.FileInfo dataset in a given path
 //
-// 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
-// 2: path string (Path where files are located)
+// 1: fileInfo []fs.FileInfo 	(obtained from os.Open File -> Readdir()) 
+// 2: path string 				(Path where files are located)
 //
 // Returns:
-//	2: [][]string 		(File info -as in [n_files]{IsDir, LastM, FName, FSize_HR_Format}  )
-//	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
-//	3: int64 			(Sum of total file sizes in given path)
+//	2: [][]string 				(File info -as in [n_files]{IsDir, LastM, FName, FSize_HR_Format}  )
+//	3: error 					(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+//	3: int64 					(Sum of total file sizes in given path)
 func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var files [][]string	// data set of all files scanned
     var totSize int64 		// sum of file sizes
@@ -131,7 +131,7 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 // 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
 //
 // Returns:
-//	1: [][]int 			(File sizes matrix)
+//	1: [][]int 					(File sizes matrix)
 func EncapSizes(fileInfo []fs.FileInfo) ([][]int) {
 	var sizes [][]int
 
@@ -146,11 +146,11 @@ func EncapSizes(fileInfo []fs.FileInfo) ([][]int) {
 
 // CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
 //
-// 1: [][]string 	(Raw data from Encap(), including dirs conditional y/n in first colum
+// 1: rawData [][]string 		(Raw data from Encap(), including dirs conditional y/n in first colum
 // 
 // Returns: 
-//	1: [][]string 	(Same matrix without first colum)
-//	2: []string 	(Folder y/n confirmation string obtained from argument to this function)
+//	1: [][]string 				(Same matrix without first colum)
+//	2: []string 				(Folder y/n confirmation string obtained from argument to this function)
 func CleanData(rawData [][]string) ([][]string, []string) {
 	var cleanSli [][]string						// 2D slice matrix without the y/n directory column
 	var dirSli []string							// []int slice matrix containing y/n directory column
@@ -164,10 +164,10 @@ func CleanData(rawData [][]string) ([][]string, []string) {
 
 // ByteToReadableSize transform a byte size into human readable form sizes (kb, Mb, Gb, Tb, Pb). Takes 1 argument and returns a HR string for size
 //
-// 1: bigNum int64 		(size in bytes)
+// 1: bigNum int64 				(size in bytes)
 //
 // Returns:
-//	1: string			(size in human readable form: Pb, Tb, Gb, etc)
+//	1: string					(size in human readable form: Pb, Tb, Gb, etc)
 func ByteToReadableSize(bigNum int64) string {
     const unit = 1024
     if bigNum < unit {
@@ -184,10 +184,10 @@ func ByteToReadableSize(bigNum int64) string {
 
 // RenderData renders a table in CLI. Takes 4 arguments with information from Files in path given as first argument to the program
 //
-// 1: []string  		(Slice with y/n values for Directory)
-// 2: [][]string 		(Sorted Slice from biggest file to lowest size) 
-// 3: int64 			(Total scanned file size combined)
-// 4: int 				(Total files in given path)//	
+// 1: []string  				(Slice with y/n values for Directory)
+// 2: [][]string 				(Sorted Slice from biggest file to lowest size) 
+// 3: int64 					(Total scanned file size combined)
+// 4: int 						(Total files in given path)//	
 //	
 //	<No return>
 func RenderData(dirs []string, data [][]string, totSize int64, totFiles int) {
@@ -221,8 +221,8 @@ func RenderData(dirs []string, data [][]string, totSize int64, totFiles int) {
 // 
 // Takes 2 arguments:
 // 
-// 1: sli [][]int 		(size matrix with size and original position as column values in every row)
-// 2: sizePort int 		(as first argument (Bigger first, smaller last) by calling Swap() function
+// 1: sli [][]int 				(size matrix with size and original position as column values in every row)
+// 2: sizePort int 				(as first argument (Bigger first, smaller last) by calling Swap() function
 //	
 //	<No return>
 func FileSizeSort(sli [][]int, sizePos int)  {
@@ -247,8 +247,8 @@ func FileSizeSort(sli [][]int, sizePos int)  {
 // Swap switches positions of 2 rows from [][]int slice. Rows swapped are i and i+1 index (Takes i int as second argument) 
 // 
 //	Takes 2 arguments:
-//	1: sli[][]int 	(Slice containing file size information in 2 columns)
-//	2: i int 		(i and i+1 positions where rows are going to be swapped)
+//	1: sli[][]int 				(Slice containing file size information in 2 columns)
+//	2: i int 					(i and i+1 positions where rows are going to be swapped)
 // 
 //	<No return>
 func Swap(sli [][]int, i int) {
@@ -264,12 +264,12 @@ func Swap(sli [][]int, i int) {
 // FastSwitchSli sorts a [n_files][5]string dataset obtained from <- GetPathInfo() <- EncapData().
 // 
 // Takes 3 arguments:
-// 1: [][]string 	( Unordered string matrix with folder files data)
-// 2: [][]int 		( Sorted slice with file size and original position in primitive raw data slice)
-// 3: int 			( original position of files, in ordered fileSize slice's rows. Basically its col_index )
+// 1: [][]string 				( Unordered string matrix with folder files data)
+// 2: [][]int 					( Sorted slice with file size and original position in primitive raw data slice)
+// 3: int 						( original position of files, in ordered fileSize slice's rows. Basically its col_index )
 //
 // Returns: 
-//	1: [][]string 	(Fully formatted array with file data. Ordered by size. later derived to RenderData() function for CLI display purpose)
+//	1: [][]string 				(Fully formatted array with file data. Ordered by size. later derived to RenderData() function for CLI display purpose)
 func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][]string {
 	var sortedSli [][]string
 	for _, row := range orderedSli {
@@ -283,18 +283,16 @@ func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][
 // HandlePath handles a given path calling functions in package blit_cli
 // 
 // Takes 1 argument:
-// 1: path string	 	(what system path to be listed)
+// 1: path string	 			(what system path to be listed)
 //
 // Returns:
-//	1: []fs.FileInfo	(Data from files listed)
-//	2: string			(Sanitized path. Returned from  SanitizeLastSlash() with proper slashing format)
-//	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+//	1: []fs.FileInfo			(Data from files listed)
+//	2: string					(Sanitized path. Returned from  SanitizeLastSlash() with proper slashing format)
+//	3: error 					(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 func HandlePath(path string) ([]fs.FileInfo, string, error) {
 	var fileInfo []fs.FileInfo
 	
-	//fmt.Println("Alternative paths: ", paths)
-	path = SanitizeLastSlash(path)
-	
+	path = SanitizeLastSlash(path)	
 	fileInfo, err := GetPathInfo(path)	
 
 	return fileInfo, path, err
@@ -303,10 +301,10 @@ func HandlePath(path string) ([]fs.FileInfo, string, error) {
 // SanitizeLastSlash verifies that last slash is added to given path or returns it with it
 //
 // Takes 1 argument:
-//	1: path string		(what system path to be listed)
+//	1: path string				(what system path to be listed)
 //
 // Returns:
-//	1: string			(Sanitized path with slash at the end)
+//	1: string					(Sanitized path with slash at the end)
 func SanitizeLastSlash(path string) string {
 	if path[len(path)-1:] != "/" {
 		path += "/"
@@ -322,7 +320,7 @@ func SanitizeLastSlash(path string) string {
 // Openbrowser opens default browser in system at a given URL
 // 
 // Takes 1 argument:
-// 1: url string	 	(what URI to open in brwoser)
+// 1: url string	 			(what URI to open in brwoser)
 //
 // Returns: 
 //	<No Return>
