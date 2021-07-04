@@ -17,12 +17,22 @@ import (
 	"os"
     "strconv"
     "github.com/olekukonko/tablewriter"
-    "io/fs"    
+    "io/fs"
+	"runtime" 
+	"os/exec"
+	"log"
 )
 
 type PathError struct {
 	err error
 	path string
+}
+
+type File struct {
+	IsDir string `json:"IsDir"`
+	LastM string `json:"LastM"`
+	FName string `json:"FName"`
+	FSize string `json:"FSize"`
 }
 
 func (p *PathError) Error() string {
@@ -82,17 +92,17 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 // 2: path string (Path where files are located)
 //
 // Returns:
-//	2: [][]string 		(File info -as in [n_files]{isDir, lastM, fName, size_HR_Format}  )
+//	2: [][]string 		(File info -as in [n_files]{IsDir, LastM, FName, FSize_HR_Format}  )
 //	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 //	3: int64 			(Sum of total file sizes in given path)
 func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var files [][]string	// data set of all files scanned
     var totSize int64 		// sum of file sizes
-    var isDir string		// y/n to detect if it's a directory, for latter format
+    var IsDir string		// y/n to detect if it's a directory, for latter format
 
 	for _, file := range fileInfo {
-		fName := file.Name()
-		stats, err := os.Stat(path + fName)
+		FName := file.Name()
+		stats, err := os.Stat(path + FName)
 
 		if err != nil {
 			fmt.Println("os.Stat failed. Err: ", err)
@@ -100,16 +110,16 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 		}
 
 		if stats.IsDir() {
-			isDir = "y"
+			IsDir = "y"
 		} else {
-			isDir = "n"
+			IsDir = "n"
 		}
-		lastM := stats.ModTime().Format("2006-01-02 15:04:05");
+		LastM := stats.ModTime().Format("2006-01-02 15:04:05");
 
-		size := file.Size()
-		totSize += size
+		FSize := file.Size()
+		totSize += FSize
 
-		fileLine	:= []string{isDir, lastM, fName, ByteToReadableSize(size)}
+		fileLine	:= []string{IsDir, LastM, FName, ByteToReadableSize(FSize)}
 		files 		= append(files, fileLine)
 		
 	}
@@ -268,4 +278,86 @@ func FastSwitchSli(strUnordered [][]string, orderedSli [][]int, origPos int) [][
 	}
 
 	return sortedSli
+}
+
+// HandlePath handles a given path calling functions in package blit_cli
+// 
+// Takes 1 argument:
+// 1: path string	 	(what system path to be listed)
+//
+// Returns:
+//	1: []fs.FileInfo	(Data from files listed)
+//	2: string			(Sanitized path. Returned from  SanitizeLastSlash() with proper slashing format)
+//	3: error 			(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
+func HandlePath(path string) ([]fs.FileInfo, string, error) {
+	var fileInfo []fs.FileInfo
+	
+	//fmt.Println("Alternative paths: ", paths)
+	path = SanitizeLastSlash(path)
+	
+	fileInfo, err := GetPathInfo(path)	
+
+	return fileInfo, path, err
+}
+
+// SanitizeLastSlash verifies that last slash is added to given path or returns it with it
+//
+// Takes 1 argument:
+//	1: path string		(what system path to be listed)
+//
+// Returns:
+//	1: string			(Sanitized path with slash at the end)
+func SanitizeLastSlash(path string) string {
+	if path[len(path)-1:] != "/" {
+		path += "/"
+	}
+
+	if path[:1] != "/" {
+		path = "/" + path
+	}
+	return path
+}
+
+
+// Openbrowser opens default browser in system at a given URL
+// 
+// Takes 1 argument:
+// 1: url string	 	(what URI to open in brwoser)
+//
+// Returns: 
+//	<No Return>
+func Openbrowser(url string) {
+	var err error
+
+	switch runtime.GOOS {
+	case "linux":
+		err = exec.Command("xdg-open", url).Start()
+	default:
+		err = fmt.Errorf("Unsupported platform")
+	}
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+// StructurizeFiles converts [][]string data from files into []File struct type so it can be converted into Json
+// 
+// Takes 1 argument:
+// 1: files [][]string	 	(files in 2D array format)
+//
+// Returns: 
+//	1: []File 				(Preformated to be json capable)
+func StructurizeFiles(filesStr [][]string) []File {
+	var Files []File
+	for _, file := range filesStr {
+		IsDir		:= file[0]
+		LastM 		:= file[1]
+		FName		:= file[2]
+		FSize_HR 	:= file[3]
+
+		var File 	= File{IsDir, LastM, FName, FSize_HR}
+		Files 		= append(Files, File)
+	}
+
+	return Files
 }
