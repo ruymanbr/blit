@@ -1,4 +1,4 @@
-module blit/pkg/blit_backend
+module blit/pkg/blit_api
 
 go 1.16
 

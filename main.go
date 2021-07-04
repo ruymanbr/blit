@@ -19,12 +19,11 @@
 package main
 
 import (
-	"github.com/ruymanbr/blit/pkg/blit_backend"
+	"github.com/ruymanbr/blit/pkg/blit_api"
 	"github.com/ruymanbr/blit/pkg/blit_cli"
 	"fmt"
 	"os"
 	"log"
-	//"encoding/json"
 )
 
 var CLI_active bool
@@ -59,23 +58,8 @@ func main() {
 		
 		blit_cli.RenderData(dirList, sortedSli, totSize, totFiles)
 
-		/*
-		SortedFiles					:= blit_cli.StructurizeFiles(sortedSli)
-		fmt.Println("Ordered []File struct slice is: ", SortedFiles)
-		barr, _ := json.Marshal(SortedFiles)
-
-		fmt.Println("JSON format of SortedFiles is: ")
-		fmt.Println(barr)
-
-
-		unMarshal := json.Unmarshal(barr, &SortedFiles)
-		fmt.Println(unMarshal)
-		fmt.Println("Ordered []File struct slice is: ", SortedFiles)
-		*/
 	} else {		
-		//blit_cli.Openbrowser("http://localhost:8080/api/v1")
-		//blit_backend.Start()
-		app := blit_backend.App{}
+		app := blit_api.App{}
 	    app.InitRouter()
 	}
 
