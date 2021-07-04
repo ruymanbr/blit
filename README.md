@@ -69,13 +69,15 @@
 <li>Installing local NPM dependancies. Run:</li>
 	<li>npm install</li>
 <li>Installing Yarn (compatible with what's installed in blit_frontend. Run these commands:</li>
-	<sub>sudo apt remove cmdtest</sub>
-	<sub>sudo apt remove yarn</sub>
-	<sub>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</sub>
-	<sub>echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list</sub>
-	<sub>sudo apt-get update</sub>
-	<sub>sudo apt-get install yarn -y</sub>
-	<sub>yarn install</sub>
+<ul>
+	<li>sudo apt remove cmdtest</li>
+	<li>sudo apt remove yarn</li>
+	<li>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</li>
+	<li>echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list</li>
+	<li>sudo apt-get update</li>
+	<li>sudo apt-get install yarn -y</li>
+	<li>yarn install</li>
+</ul>
 <p>To run the frontend you just need to do </p>
 
 <h2>2-Getting Started</h2>
