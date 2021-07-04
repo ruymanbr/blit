@@ -1,8 +1,8 @@
 /*
- * File:    blit_backend.go
+ * File:    blit_api.go
  *
  * Author:  	Ruymán Borges R. (ruyman21@gmail.com)
- * Date:    	1-7-21
+ * Date:    	2-7-21
  *
  * Summary of File:
  *
@@ -11,7 +11,7 @@
  */
 
 
-package blit_backend
+package blit_api
 
 import (
     "encoding/json"
@@ -51,7 +51,6 @@ func (app *App) InitRouter() {
 			})
 		})
 	}
-
 	api.POST("/post", FrontHandler)
 	api.GET("/post", FrontHandler)
 
@@ -83,7 +82,7 @@ func FrontHandler(c *gin.Context) {
 			})	
 		}
 
-		jsonToSend, totFiles, tSizeStr, err := getFilesData(path)
+		jsonToSend, totFiles, tSizeStr, err := GetFilesData(path)
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H {
 				"message":"Unauthorized Path 401",
@@ -104,16 +103,14 @@ func FrontHandler(c *gin.Context) {
 	}	
 }
 
-
-func getFilesData(path string) ([]blit_cli.File, string, string, error) {
+// GetFilesData calls for
+func GetFilesData(path string) ([]blit_cli.File, string, string, error) {
 	if (path == "") {
 		err := fmt.Errorf("Empty search is not allowed")
 		return []blit_cli.File{}, EmptyStr, EmptyStr, err		
 	}
 	fileInfo, pathCorrect, err	:= blit_cli.HandlePath(path)
 	if err != nil {
-		//log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
-
 		return []blit_cli.File{}, EmptyStr, EmptyStr, err
 	}
 	
