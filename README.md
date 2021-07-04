@@ -169,6 +169,7 @@
 		</ul>
 	<li>Complexity and Coverage</li>
 		<ul>
+			<li>Middleware implementation. Specially for cybersecurity purposes, but also for error handling, re-routing, and modularity in different microservices of some parts.</li>
 			<li>More argument complexity for CLI and API (Adding flag capacity with flag package)</li>
 			<sub>(Parameters for different options)</sub>
 			<sub>Examples:</sub>
