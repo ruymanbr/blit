@@ -8,12 +8,12 @@ class NameForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: "offline",
+      status: "online",
       files: [],
       path: '',
       value:    '',
-      totFiles: '',
-      totSize:  ''
+      totFiles: ' 0 files',
+      totSize:  ' 0 Kb'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -46,6 +46,10 @@ class NameForm extends React.Component {
         this.setState({status: "offline"})
       } else {
         console.log(error)
+        this.setState({files: []})
+        this.setState({totFiles: '0 files'})
+        this.setState({totSize: '0 Kb'})
+        this.setState({path: this.state.value})
       }
       
     })
@@ -55,42 +59,26 @@ class NameForm extends React.Component {
     return this.state.files.map((file, index) => {
       const { IsDir, LastM, FName, FSize } = file //destructuring
       return (
-        <tr>
+        <tr key={index}>
           <td className="w10">{IsDir}</td>
           <td className="w30">{LastM}</td>
-          <td className="w45">{FName}</td>
+          <td className="w45" dir={IsDir}>{FName}</td>
           <td className="w15">{FSize}</td>
         </tr>
       )
     })
   }
  
-  updateTables() {
-    
-  } 
+  getTotalFiles() {
+    return this.state.totFiles
+  }
+
+  getTotalSize() {
+    return this.state.totSize
+  }
 
   componentDidMount() {
-    axios.get("http://localhost:8080/api/v1/post")
-    .then( response => {
-      console.log(response)
-      this.setState({data: response.data})
-      this.setState({status: "online"})
-    })
-    .catch( error => {
-      if (!error.response) {
-            // network error
-            console.log(error)
-        } else {
-            this.setState({status: "online"})
-            
-            if (error.response.status !== "404") {
-              console.log(error)
-            } else {
-              console.log("Path is empty")
-            }
-        }
-      
-    })
+    
     
   }
 
@@ -121,6 +109,18 @@ class NameForm extends React.Component {
         <div className="App-response">          
           <table id='files'>
              <tbody>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th className="counters">Total files: {this.getTotalFiles()}</th>
+                  <th className="counters">Total Size: {this.getTotalSize()}</th>
+                </tr>
+                <tr className="header">
+                  <th className="headers w10">Directory (y/n)</th>
+                  <th className="headers w30">Last Modified</th>
+                  <th className="headers w45">Name</th>
+                  <th className="headers w15">Size</th>
+                </tr>
                 {this.renderTableData()}
              </tbody>
           </table>
@@ -130,11 +130,6 @@ class NameForm extends React.Component {
   }
 }
 
-const RenderRow = (props) =>{
-  return props.keys.map( (key, index) => {
-    return <td key={props.data[key]}>{props.data[key]}</td>
-  })
-}
 
 NameForm.defaultProps = {
     action: 'http://localhost:8080/api/v1/post',

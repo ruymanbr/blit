@@ -84,7 +84,14 @@
 
 #files td, #files th {
   text-align: left;
-  padding: 10px;
+  padding: 3px 5px;
+  font-size: 12px;
+  border: 0;
+}
+
+#files td[dir="y"] {
+    color: #00ffff;
+    font-weight: 600;
 }
 
 #files .w10 {
@@ -103,21 +110,18 @@
     width: 15%;
 }
 
-#files thead {
-  color:yellow;
-}
-
 #files tbody {
   color:white;
 }
 
-#files table, 
-#files th, 
-#files td {
-  border: 1px solid black;
+
+#files .headers {
+  color: yellow;
+  text-transform: uppercase;
+  border-bottom: 1px yellow solid;
 }
 
-#files td, 
-#files th{
-  padding: 5px;
+#files .counters {
+  color: yellow;
+  color:  orange;
 }

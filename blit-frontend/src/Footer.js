@@ -7,7 +7,7 @@ class AppFooter extends React.Component {
 	render() {
 		return (
 			<div>
-				<footer><p>Built by Ruymán B.R.</p></footer>
+				<footer><p>Author: <a href="https://github.com/ruymanbr/blit">Ruymán B.R.</a></p></footer>
 			</div>
 		);
 	}
