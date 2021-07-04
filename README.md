@@ -62,13 +62,13 @@
 <h4>Blit Client installation</h4>
 	<sub>(Development build)</sub>
 <li>cd blit_frontend</li>
-<li>Installing general NPM dependancies</li>
+<h5>Installing general NPM dependancies</h5>
 <sub>It'll install all dependencies found in package-lock.json (except individuals. Next line)</sub>
-<p>from blit_frontend directory run:</p>
-	<sub>npm ci</sub>	
-<li>Installing local NPM dependancies. Run:</li>
-	<li>npm install</li>
-<li>Installing Yarn (compatible with what's installed in blit_frontend. Run these commands:</li>
+<sub>from blit_frontend directory run:</sub>
+<li>npm ci</li>	
+<h5>Installing local NPM dependancies. Run:</h5>
+<li>npm install</li>
+<h5>Installing Yarn (compatible with what's installed in blit_frontend. Run these commands:</h5>
 <ul>
 	<li>sudo apt remove cmdtest</li>
 	<li>sudo apt remove yarn</li>
