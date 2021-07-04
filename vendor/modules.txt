@@ -31,9 +31,9 @@ github.com/modern-go/concurrent
 github.com/modern-go/reflect2
 # github.com/olekukonko/tablewriter v0.0.5
 github.com/olekukonko/tablewriter
-# github.com/ruymanbr/blit/pkg/blit_backend v0.0.0-00010101000000-000000000000 => ./pkg/blit_backend
+# github.com/ruymanbr/blit/pkg/blit_api v0.0.0-00010101000000-000000000000 => ./pkg/blit_api
 ## explicit
-github.com/ruymanbr/blit/pkg/blit_backend
+github.com/ruymanbr/blit/pkg/blit_api
 # github.com/ruymanbr/blit/pkg/blit_cli v0.0.0-00010101000000-000000000000 => ./pkg/blit_cli
 ## explicit
 github.com/ruymanbr/blit/pkg/blit_cli
@@ -80,5 +80,5 @@ google.golang.org/protobuf/runtime/protoimpl
 google.golang.org/protobuf/types/descriptorpb
 # gopkg.in/yaml.v2 v2.4.0
 gopkg.in/yaml.v2
-# github.com/ruymanbr/blit/pkg/blit_backend => ./pkg/blit_backend
+# github.com/ruymanbr/blit/pkg/blit_api => ./pkg/blit_api
 # github.com/ruymanbr/blit/pkg/blit_cli => ./pkg/blit_cli
