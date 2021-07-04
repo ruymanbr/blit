@@ -77,6 +77,12 @@ func FrontHandler(c *gin.Context) {
 	if response["path"] != nil {
 		
 		path := fmt.Sprintf("%v", response["path"])
+		if (path == "") {
+			c.JSON(http.StatusNotFound, gin.H {
+				"message":"Not found 404",
+			})	
+		}
+
 		jsonToSend, totFiles, tSizeStr, err := getFilesData(path)
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H {
@@ -100,7 +106,10 @@ func FrontHandler(c *gin.Context) {
 
 
 func getFilesData(path string) ([]blit_cli.File, string, string, error) {
-
+	if (path == "") {
+		err := fmt.Errorf("Empty search is not allowed")
+		return []blit_cli.File{}, EmptyStr, EmptyStr, err		
+	}
 	fileInfo, pathCorrect, err	:= blit_cli.HandlePath(path)
 	if err != nil {
 		//log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
