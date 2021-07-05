@@ -201,7 +201,7 @@ func ByteToReadableSize(bigNum int64) string {
     if bigNum < unit {
         return fmt.Sprintf("%d  B", bigNum)
     }
-    div, exp := int64(unit), 0
+    div, exp := float64(unit), 0
     for n := bigNum / unit; n >= unit; n /= unit {
         div *= unit
         exp++
