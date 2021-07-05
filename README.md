@@ -140,10 +140,17 @@
 <br />
 <h2>5-Production Readiness</h2>
 <h3>Discussion</h3>
-<p>Program can be used through CLI or implementating it through its API into a frontend (tested on REACT-app frontend)</p>
+<p>Application is production ready (ish). Only with the specs provided. But I'd recommend further development. Which I comment in "What's next" section.</p>
+<p>Blit v0.0.1 can be used through CLI or implemented it through its API into a frontend client app (tested on REACT-app for the DEMO)</p>
 <br />
 <p>You can execute the demonstration in the section <a href="#2-getting-started">'Getting Started'</a></p>
 <br />
+<h4>Steps to become PROD READY: (Minimum specs)</h4>
+<li>React Client needs to abandon development status to be production ready. Right now is up for test, but isn't workable in a different machine or folder than the current one. It's a "demo" for foreground requests to the API bg system</li>
+<li>BLIT Cli can be build and used as a CLI tool to list folders, but it's only fulfilling task minimum specs</li>
+<li>Blit API is discussed below, and several changes should be made to become a REST API complete, when Blitadvance into a more broad spectrum of functionalities</li>
+<h4>What's next? Broadening BLIT 0.0.1 to the next level and MANDATORY development to be PROD READY:</h4>
+
 <h3>Some recommendations and improvements to achieve production Ready level</h3>
 <ul>
 	<li>CI/CD</li>
