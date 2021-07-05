@@ -154,7 +154,8 @@
 <h3>Some recommendations and improvements to achieve production Ready level</h3>
 <ul>
 	<li>CI/CD</li>
-		<ul>Implementation of the API to a CI/CD friendly environment (Swagger, Swaggo?, now called OpenAPI) so it could integrate with CI/CD easily.</ul>
+		<ul>Implementation of the API to a CI/CD friendly environment (Swagger, Swaggo?, Postman, ...) so it could integrate with CI/CD easily.</ul>
+		<li>Documentation for the API should be provided (Prod Ready. CI/CD purposes, etc)</li>
 		<li>More and better testing with CI/CD in mind (more on this below)</li>
 	<li>Stability and performance improvements</li>
 		<ul>
