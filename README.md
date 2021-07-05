@@ -95,9 +95,7 @@
 <li>Go to BLIT root folder in 1, and blit_frontend in 2nd. Run the following commands</li>
 <ol>
 	<li>VERY IMPORTANT!!!! You need to be root super user to load BACKEND SERVER or an error will be thrown when traversing directories</li>
-	<li>Console 1: npm start server</li>
-	<sub>Alternatively you can enter: "go run main.go"</sub>
-	<sub> -- or ./bin/blit (if you are in BLIT root folder). There is a compiled version in BIN called "blit"</sub>
+	<li>Console 1: go run main.go</li>
 	<sub>IMPORTANT! If you have Google Chrome in Ubuntu, it comes with several bugs, like EXEC opening browser but not executing command. You'll need to follow this instructions: <a href="shorturl.at/sxzA1">How to xdg/open in Ubuntu Chrome</a></sub>
 	<li>Console 2: yarn start</li>
 	<sub>localhost:8080 and localhost:3000 (backend and client respectivel)</sub>
