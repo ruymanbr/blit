@@ -21,6 +21,7 @@ import (
 	"runtime" 
 	"os/exec"
 	"log"
+	"path/filepath"
 )
 
 type PathError struct {
@@ -86,6 +87,26 @@ func GetPathInfo(root string) ([]fs.FileInfo, error) {
 	return fileInfo, nil	
 }
 
+// DirSize obtains Dir size recursively
+//
+// 1: path string 				(Path where files are located)
+//
+// Returns:
+//	1: int64 					(Sum of total file sizes in given path)
+func DirSize(path string) (int64, error) {
+	var size int64
+    err := filepath.Walk(path, func(_ string, info os.FileInfo, err error) error {
+        if err != nil {
+            return err
+        }
+        if !info.IsDir() {
+            size += info.Size()
+        }
+        return err
+    })
+    return size, err
+}
+
 // EncapData extracts data from a []fs.FileInfo dataset in a given path
 //
 // 1: fileInfo []fs.FileInfo 	(obtained from os.Open File -> Readdir()) 
@@ -101,6 +122,7 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
     var IsDir string		// y/n to detect if it's a directory, for latter format
 
 	for _, file := range fileInfo {
+		var FSize int64
 		FName := file.Name()
 		stats, err := os.Stat(path + FName)
 
@@ -111,14 +133,20 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, error, int64) {
 
 		if stats.IsDir() {
 			IsDir = "y"
+			DirPath := path + FName
+			FSize, err = DirSize(DirPath)
+			if err != nil {
+				fmt.Println("DirSize() failed to obtain Dir total size. Are you Super User? (Try 'sudo su -' and run again) Err: ", err)
+				fmt.Println("Remember to call: 'export PATH=$PATH:/usr/local/go/bin', as super user")
+				return files, err, 0
+			}
+			totSize += FSize
 		} else {
 			IsDir = "n"
+			FSize = file.Size()
+			totSize += FSize
 		}
 		LastM := stats.ModTime().Format("2006-01-02 15:04:05");
-
-		FSize := file.Size()
-		totSize += FSize
-
 		fileLine	:= []string{IsDir, LastM, FName, ByteToReadableSize(FSize)}
 		files 		= append(files, fileLine)
 		
