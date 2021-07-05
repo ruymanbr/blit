@@ -112,6 +112,8 @@
 <h2>3-Testing</h2>
 
 <p>Only unit tests have been provided for CLI. From CONSOLE, once inside BLIT directory, run the following commands</p>
+<p>VERY IMPORTANT!!!! You need to be root super user to load BACKEND SERVER or an error will be thrown when traversing directories</p>
+<p>From BLIT root directory</p>
 <ol>
 	<li>cd pkg/blit_cli</li>
 	<li>go test -bench . -v</li>
