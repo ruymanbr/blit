@@ -120,7 +120,7 @@
 </ol>
 <p>Benchmarking tests at the end may vary depending on your computer. Lowest process has been tested around 30.000 ns/op. Fastest at 20 ns/op in one Laptop Intel i3, and desktop intel i7 with 8GB and 16GB, both SSD drives.</p>
 <br />
-<h2>4-Dcumentation</h2>
+<h2>4-Doumentation</h2>
 <p>Documentation has been provided in this repository in DOC, PDF and godoc HTML format. </p>
 <br />
 <p>Alternatively, inside BLIT root directory run the following commands:</p>
