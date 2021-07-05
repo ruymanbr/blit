@@ -114,12 +114,12 @@ func DirSize(path string) (int64, error) {
 //
 // Returns:
 //	1: [][]string 				(File info -as in [n_files]{IsDir, LastM, FName, FSize_HR_Format}  )
-//	2: [][]int64 				(Slice with file sizes for files in int64 format, expressed in bytes. Files as in []int{i, sizeN})
+//	2: [][]int 					(Slice with file sizes for files in int64 format, expressed in bytes. Files as in []int{i, sizeN})
 //	3: error 					(Returns this error when trying to obtain os.Stat(/path/to/file/name/) for each file
 //	3: int64 					(Sum of total file sizes in given path)
 func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, [][]int, error, int64) {
     var files [][]string	// data set of all files scanned
-    var sizes [][]int64	// data set of all files scanned
+    var sizes [][]int	// data set of all files scanned
     var totSize int64 		// sum of file sizes
     var IsDir string		// y/n to detect if it's a directory, for latter format
 
@@ -148,7 +148,8 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, [][]int, error,
 			FSize = file.Size()
 			totSize += FSize
 		}
-		sizeLine	:= []int{i, FSize}
+		FsizeLine 	:= int(FSize)
+		sizeLine	:= []int{i, FsizeLine}
 		sizes		= append(sizes, sizeLine)
 
 		LastM := stats.ModTime().Format("2006-01-02 15:04:05");
@@ -159,23 +160,6 @@ func EncapData(fileInfo []fs.FileInfo, path string) ([][]string, [][]int, error,
 	return files, sizes, nil, totSize
 }
 
-// EncapSizes returns a [][]int slice with data from a []fs.FileInfo dataset in a given path
-//
-// 1: fileInfo []fs.FileInfo (obtained from os.Open File -> Readdir()) 
-//
-// Returns:
-//	1: [][]int 					(File sizes matrix)
-func EncapSizes(fileInfo [][]string) ([][]int) {
-	var sizes [][]int
-
-	for i, file := range fileInfo {
-		size := file[]		
-		sizeN := int(size)			
-		sizeLine	:= []int{i, sizeN}
-		sizes		= append(sizes, sizeLine)
-	}
-	return sizes
-}
 
 // CleanData removes first column for [][]string matrix. Ideally the format returned by EncapData() function in second position
 //

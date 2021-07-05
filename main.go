@@ -45,11 +45,10 @@ func main() {
 			log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
 		}
 		fmt.Printf("Passing fileInfo length %v with path '%v' to EncapData()\n", len(fileInfo), pathCorrect)
-		encap_data, err, totSize 	:= blit_cli.EncapData(fileInfo, pathCorrect)
+		encap_data, sizesSli, err, totSize 	:= blit_cli.EncapData(fileInfo, pathCorrect)
 		if err != nil {
 			log.Fatalf("\nPath %v is incorrect. Error: %v\n", path, err)
 		}
-		sizesSli 					:= blit_cli.EncapSizes(fileInfo)
 		totFiles 					:= len(sizesSli)
 		_, dirList 					:= blit_cli.CleanData(encap_data)
 

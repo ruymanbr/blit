@@ -114,7 +114,7 @@ func GetFilesData(path string) ([]blit_cli.File, string, string, error) {
 		return []blit_cli.File{}, EmptyStr, EmptyStr, err
 	}
 	
-	encap_data, err, totSize 	:= blit_cli.EncapData(fileInfo, pathCorrect)
+	encap_data, sizesSli, err, totSize 	:= blit_cli.EncapData(fileInfo, pathCorrect)
 	if err != nil {
 		log.Fatalf("\nPath %v is incorrect. Error: %v\n", path, err)
 
@@ -122,7 +122,6 @@ func GetFilesData(path string) ([]blit_cli.File, string, string, error) {
 	}
 	tSizeStr := blit_cli.ByteToReadableSize(totSize)
 	
-	sizesSli 					:= blit_cli.EncapSizes(fileInfo)
 	totFiles 					:= len(sizesSli)
 	totFilesStr					:= strconv.Itoa(totFiles) + " files"
 
