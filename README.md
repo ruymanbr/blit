@@ -137,6 +137,72 @@
 	<li>godoc -http=:6060 -goroot=$BLIT_PATH && x-www-browser http://localhost:6060</li>
 	<sub>Remember that server + client use 8080 and 3000 respectively in this setup.</sub>
 </ol>
+<h3>API v1</h3>
+<sub>(brief summary)</sub>
+<p>API enpoints and protocols are very simplistic, due to the specifications submitted. It's a private API with 3 endpoints, which of whom uses only 1 to function:</p>
+<p>Generally speaking, it's been made to accept GET, POST and OPTIONS, although it only works with POST, by receiving a JSON object. In this development phase, it's only taking first element as valid for "path" argument.</p>
+<h4>Allowed (Protocols)</h4>
+<li>Headers: "Content-Type", "application/json"</li>
+<h4>Endpoints</h4>
+<li>/api/v1 (GET)</li>
+<p>i.e.:Checks for ONLINE/OFFLINE can be done</p>
+<li>Methods:</li>
+<ul>
+	<li>GET</li>
+	<p>Status Code: 200</p>
+</ul>
+<li>/api/v1/post</li>
+<p>Entry point for POST/GET request</p>
+<li>Methods:</li>
+<ul>
+	<li>GET</li>
+	<p>Response:</p>
+	<li>Status Code: 200</li>
+	<li>POST</li>
+	<ul>
+		<li>Accepting: JSON object</li>
+		<li>Parameters: </li>
+		<p>JSON accepts 1 argument as 'key, value' inside JSON object: </p>
+		<p>path: path_value    // of type STRING</p>
+		<li>VALID OBJECT (JSON)? Then:</li>
+		<ul>
+			<li>VALID PATH submited? Then:</li>
+			<ul>
+				<li>VALID Request:</li>
+				<ul>
+					<p>Response:</p>
+					<li>4 col array of type STRING with:</li>
+					<li>key, value STRING</li>
+				</ul>
+				<p>Response format: {IsDir : value, LastM: value, FName: value, FSize_HR_Format: value}</p>
+				<p>Status Code: 200</p>
+				<li>INVALID Request: </li>
+				<p>Response:</p>
+				<ul>
+					<li>{"message":"Unauthorized Path 401","error": err,}</li>
+				</ul>
+				<p>Notes: 'path' was processed but got an invalid answer from bg application, or an error</p>
+			</ul>
+			<li>NOT a VALID PATH submited? Then:</li>
+			<li>INVALID Request: If not a valid "path" argument was submitted</li>
+			<p>Response:</p>
+			<ul>				
+				<p>{"message":"Not found 404"}</p>
+			</ul>
+			<p>Notes: 'Path' was empty, or didn't got 'path' as key argyment in JSON</p>
+		</ul>
+		<li>INVALID Request (others): NOT VALID OBJECT // NOT a JSON object.</li>	
+		<p>Response:</p>
+		<ul>
+			<p>{"message":"Internal Server Error 500","error": err,}</p>
+		</ul>		
+	</ul>
+</ul>
+<li>Other URIS or requests:</li>
+<p>Response:</p>
+<ul>				
+	<p>{"message":"Not found 404"}</p>
+</ul>
 <br />
 <h2>5-Production Readiness</h2>
 <h3>Discussion</h3>
