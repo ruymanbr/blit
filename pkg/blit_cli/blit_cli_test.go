@@ -121,53 +121,6 @@ func BenchmarkGetPathInfo(b *testing.B) {
 	}
 }
 
-// TestEncapSizes tests a mockup process like EncapSizes 
-func TestEncapSizes(t *testing.T) {
-	var sizes [][]int
-	var sizesExpected = [][]int{
-		{0, 3145728},
-		{1, 1048576},
-		{2, 1073741824},
-	}
-	var pathsData = []struct {
-		path string
-		pos int
-		size int64
-	}{
-		{"/home/", 0, 3145728},
-		{"/usr/", 1, 1048576},
-		{"/usr/local/", 2, 1073741824},
-	}
-
-	for i, testPath := range pathsData {
-		size := testPath.size		
-		sizeN := int(size)			
-		sizeLine	:= []int{i, sizeN}
-		sizes		= append(sizes, sizeLine)
-	}
-
-	for i, sizeProcessed := range sizesExpected {
-		if sizes[i][1] != sizeProcessed[1] {
-			t.Errorf("%v Test %v - Not the expected value in slice position %v\n", NotPassed, i+1, i)
-			TotalNotPassed += 1
-		} else {
-			fmt.Printf("%v Test %v - GOT: %v // WANT: %v\n", Passed, i+1, sizes[i][1], sizeProcessed[1])
-			TotalPassed += 1
-		}
-	}
-
-}
-
-// BenchmarkEncapSizes tests EncapSizes performance
-func BenchmarkEncapSizes(b *testing.B) {
-	path := "/home/"
-	fileInfo, _ := GetPathInfo(path)
-	
-	for i := 0; i < b.N; i++ {
-		EncapSizes(fileInfo)
-	}
-}
-
 // TestEncapData tests function EncapData 
 func TestEncapData(t *testing.T) {
 	
@@ -199,7 +152,7 @@ func TestEncapData(t *testing.T) {
     }
     
     for i, test := range tests {
-    	allFiles, err, totSize := EncapData(test.files, test.path)
+    	allFiles, _, err, totSize := EncapData(test.files, test.path)
 
     	if err != nil {
     		t.Errorf("%v Test %v - Couldn't complete. GOT: %v files, %v total size  // WANT: >0 files, >0 (B, Kb, Mb, ...) total size\n", NotPassed, i+1, len(allFiles), ByteToReadableSize(totSize))
