@@ -11,7 +11,7 @@
 
 <p align="center">
   <b>List files and folders in a given path. Displays the next information: DIR y/n - Last modified date - file/folder name - size</b></br>
-  <sub> Go here to see a demo <a href="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demo_blit.gif">https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demo_blit.gif</a>.<sub>
+  <sub> Go here to see a demo <a href="https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demos/blit_client_demo.gif">https://raw.githubusercontent.com/ruymanbr/blit/main/assets/demos/blit_client_demo.gif</a>.<sub>
 </p>
 
 <br />
