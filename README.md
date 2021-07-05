@@ -94,6 +94,7 @@
 <li>Open 2 CONSOLE shells in Linux (i.e. Ubuntu)</li>
 <li>Go to BLIT root folder in 1, and blit_frontend in 2nd. Run the following commands</li>
 <ol>
+	<li>VERY IMPORTANT!!!! You need to be root super user to load BACKEND SERVER or an error will be thrown when traversing directories</li>
 	<li>Console 1: npm start server</li>
 	<sub>Alternatively you can enter: "go run main.go"</sub>
 	<sub> -- or ./bin/blit (if you are in BLIT root folder). There is a compiled version in BIN called "blit"</sub>
