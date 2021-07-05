@@ -21,7 +21,6 @@ package main
 import (
 	"github.com/ruymanbr/blit/pkg/blit_api"
 	"github.com/ruymanbr/blit/pkg/blit_cli"
-	"fmt"
 	"os"
 	"log"
 )
@@ -44,7 +43,6 @@ func main() {
 		if err != nil {
 			log.Fatalf("Couldn't extract any info from %v. Error: %v\n", path, err)
 		}
-		fmt.Printf("Passing fileInfo length %v with path '%v' to EncapData()\n", len(fileInfo), pathCorrect)
 		encap_data, sizesSli, err, totSize 	:= blit_cli.EncapData(fileInfo, pathCorrect)
 		if err != nil {
 			log.Fatalf("\nPath %v is incorrect. Error: %v\n", path, err)
